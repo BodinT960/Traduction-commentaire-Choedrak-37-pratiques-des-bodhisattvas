@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivre un ami spirituel - Vocabulaire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px 0 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        @media (max-width: 1000px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section {
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .text-box {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            line-height: 2.2;
+            word-break: break-word;
+        }
+        
+        .text-box-full {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            line-height: 2.2;
+            word-break: break-word;
+            font-size: 0.95em;
+            color: #333;
+        }
+        
+        .tibetan-word {
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: inline-block;
+            font-weight: 500;
+            color: #764ba2;
+            background: #e8e0f5;
+            margin: 2px 2px;
+            border: 1px solid #d0c4e8;
+        }
+        
+        .tibetan-word:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.08);
+            border-color: #667eea;
+            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+        }
+        
+        .tibetan-word.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 0 12px rgba(102, 126, 234, 0.8);
+            border-color: #667eea;
+        }
+        
+        .vocabulary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.95em;
+        }
+        
+        .vocabulary-table thead {
+            background: #667eea;
+            color: white;
+        }
+        
+        .vocabulary-table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .vocabulary-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .vocabulary-table tbody {
+            max-height: 600px;
+            overflow-y: auto;
+            display: block;
+        }
+        
+        .vocabulary-table thead {
+            display: table;
+            width: 100%;
+        }
+        
+        .vocabulary-table tr {
+            display: table;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .vocabulary-table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .vocabulary-table tbody tr.highlighted {
+            background-color: #e3f2fd !important;
+            border-left: 4px solid #667eea;
+            padding-left: 8px;
+        }
+        
+        .tibetan-term {
+            color: #764ba2;
+            font-weight: 600;
+            width: 40%;
+        }
+        
+        .translation {
+            color: #333;
+            width: 60%;
+        }
+        
+        .stats {
+            background: #e8e0f5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            color: #764ba2;
+            font-weight: 500;
+            font-size: 0.9em;
+            min-height: 20px;
+        }
+        
+        .toggle-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .toggle-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toggle-btn:active {
+            transform: translateY(0);
+        }
+        
+        #french-text h3 {
+            font-size: 1.1em;
+            margin: 0 0 15px 0;
+            color: #667eea;
+        }
+        
+        #french-text h4 {
+            font-size: 1em;
+            margin: 15px 0 10px 0;
+            color: #764ba2;
+            font-weight: 600;
+        }
+        
+        #french-text p {
+            font-size: 0.95em;
+            line-height: 1.8;
+            color: #333;
+            margin: 0 0 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <a href="index.html" class="back-button">← Retour à l'accueil</a>
+        </div>
+        
+        <div class="header">
+            <h1>Suivre un ami spirituel qui apporte les circonstances heureuses et favorables</h1>
+            <p>Sixième pratique - Vocabulaire Interactif</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Texte Tibétain</h2>
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #764ba2; font-size: 0.9em; border-left: 4px solid #667eea;">
+                    💡 Cliquez sur les mots tibétains pour voir leur traduction
+                </div>
+                <div class="text-box" id="tibetanText"></div>
+                <div id="stats" class="stats"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Vocabulaire</h2>
+                <table class="vocabulary-table">
+                    <thead>
+                        <tr>
+                            <th>Terme Tibétain</th>
+                            <th>Traduction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vocabBody"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Texte Tibétain Complet</h2>
+                <div class="text-box-full" id="tibetanTextFull"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Traduction Française</h2>
+                <button class="toggle-btn" onclick="toggleFrench()" style="width: 100%; margin-top: 0;">📖 Afficher la traduction</button>
+                <div id="french-text" class="text-box" style="display: none; margin-top: 10px;">
+                    <h3>Sixième pratique : Suivre un ami spirituel qui apporte les circonstances heureuses et favorables</h3>
+                    
+                    <h4>Le sens :</h4>
+                    <p>
+                        Si nous écoutons ou si nous suivons certains amis spirituels, les fautes de notre propre continuum mental comme l'attachement ou l'aversion s'épuiseront. Avec le saint ami spirituel et l'excellente amitié, la triple démarche d'écoute, de réflexion et de méditation, l'amour, la compassion, la Bodhichitta, toutes ces qualités s'accroîtront de plus en plus comme en période de lune croissante.
+                    </p>
+                    
+                    <p>
+                        Nous prendrons soin de lui plus que de nous-même et nous nous en remettrons à lui à travers un comportement des trois portes pourvu de l'attitude et du comportement de la pureté primale.
+                    </p>
+                    
+                    <p>
+                        « Cette manière de s'en remettre à l'ami spirituel est l'une des [37] pratiques des Fils des Vainqueurs ».
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Vocabulary list ──────────────────────────────────────────────────────
+        const vocabulary = [
+            { tibetan: '༈',                             translation: 'symbole d\'ouverture (auspice)' },
+            { tibetan: '།',                              translation: 'shad — ponctuation tibétaine' },
+            { tibetan: 'དྲུག་པ་',                        translation: 'sixième' },
+            { tibetan: 'མཐུན་རྐྱེན་',                   translation: 'condition favorable' },
+            { tibetan: 'བཤེས་གཉེན་',                    translation: 'ami spirituel' },
+            { tibetan: 'བསྟེན་པ་',                       translation: 'suivre, s\'en remettre, rester près de quelqu\'un' },
+            { tibetan: 'ནི།',                            translation: 'particule : thématiseur' },
+            { tibetan: 'དོན་ནི།',                        translation: 'le sens' },
+            { tibetan: 'བཤེས་གྲོགས་',                   translation: 'relation, ami' },
+            { tibetan: 'གང་ཞིག་',                        translation: 'un certain, quiconque' },
+            { tibetan: 'བསྙེན་པ་',                       translation: 'se rapprocher de, s\'approcher de' },
+            { tibetan: 'འམ་',                            translation: 'particule : ou, ou bien' },
+            { tibetan: 'བསྟེན་',                         translation: 'suivre, s\'en remettre' },
+            { tibetan: 'ན་',                             translation: 'si, lorsque (particule conditionnelle)' },
+            { tibetan: 'རང་རྒྱུད་',                      translation: 'son propre continuum mental' },
+            { tibetan: 'ཀྱི་',                           translation: 'particule : le génitif' },
+            { tibetan: 'ཉེས་པ་',                         translation: 'faute, vice, mauvaise attitude' },
+            { tibetan: 'ཆགས་སྡང་',                      translation: 'attachement et aversion' },
+            { tibetan: 'སོགས་',                          translation: 'etc.' },
+            { tibetan: 'ཟད་པར་འགྱུར་',                  translation: 's\'épuiser, s\'éteindre + འགྱུར་ auxiliaire du futur' },
+            { tibetan: 'ཞིང་',                           translation: 'particule : connecteur' },
+            { tibetan: 'ཐོས་བསམ་སྒོམ་གསུམ།',             translation: 'la triple démarche d\'écoute, de réflexion et de méditation' },
+            { tibetan: 'བྱམས་སྙིང་རྗེ་',                translation: 'amour et compassion' },
+            { tibetan: 'བྱང་ཆུབ་ཀྱི་སེམས་',              translation: 'Bodhichitta' },
+            { tibetan: 'ཡོན་ཏན་',                        translation: 'qualités' },
+            { tibetan: 'ཐམས་ཅད་',                       translation: 'toutes' },
+            { tibetan: 'ཡར་ངོའི་ཟླ་བ་ལྟར་',             translation: 'comme en période de lune croissante' },
+            { tibetan: 'གོང་ནས་གོང་དུ་འཕེལ་བར་འགྱུར་བ་', translation: 's\'accroître toujours davantage' },
+            { tibetan: 'འི་',                            translation: 'particule : le génitif' },
+            { tibetan: 'བཤེས་གཉེན་དམ་པ་',               translation: 'le saint ami spirituel' },
+            { tibetan: 'དང་',                            translation: 'particule : connecteur' },
+            { tibetan: 'གྲོགས་བཟང་པོ་',                 translation: 'excellente amitié' },
+            { tibetan: 'ནི་',                            translation: 'particule : emphatique / thématiseur' },
+            { tibetan: 'རང་གི་',                         translation: 'son propre' },
+            { tibetan: 'ལུས་སྲོག་བ་',                   translation: 'vie, essence vitale' },
+            { tibetan: 'ས་',                             translation: 'particule : l\'ergatif' },
+            { tibetan: 'ཀྱང་',                           translation: 'particule : ornement d\'inclusion' },
+            { tibetan: 'གཅེས་པར་འཛིན་པ་',               translation: 'chérir plus que soi' },
+            { tibetan: 'སྒོ་ནས་',                        translation: 'au travers, par le biais' },
+            { tibetan: 'བསམ་སྦྱོར་གཉིས་',               translation: 'attitude et comportement / conduite (les deux)' },
+            { tibetan: 'ཀས་',                            translation: 'primitif, de base, primale' },
+            { tibetan: 'ཚུལ་',                           translation: 'manière, façon, méthode, aspect' },
+            { tibetan: 'བཞིན་དུ་',                       translation: 'comme, semblable, similaire' },
+            { tibetan: 'རྒྱལ་སྲས་',                      translation: 'bodhisattva, fils des vainqueurs' },
+            { tibetan: 'རྣམས་',                          translation: 'particule de pluralisation' },
+            { tibetan: 'ཀྱིས་',                          translation: 'particule : l\'ergatif' },
+            { tibetan: 'བསྟེན་ཚུལ་',                    translation: 'façon de s\'en remettre' },
+            { tibetan: 'གྱི་',                           translation: 'particule : le génitif' },
+            { tibetan: 'ལག་ལེན་',                        translation: 'pratique' },
+            { tibetan: 'ཡིན་',                           translation: 'est' },
+            { tibetan: 'ནོ་',                            translation: 'particule finale' },
+            { tibetan: 'ཞེས་པའོ།',                      translation: 'particule finale exprimant une affirmation' }
+        ];
+
+        // ── Text sequence (every token of the Tibetan text) ──────────────────────
+        const textSequence = [
+            '༈', '།',
+            'དྲུག་པ་', 'མཐུན་རྐྱེན་', 'བཤེས་གཉེན་', 'བསྟེན་པ་', 'ནི།',
+            'དོན་ནི།',
+            'བཤེས་གྲོགས་', 'གང་ཞིག་', 'བསྙེན་པ་', 'འམ་', 'བསྟེན་', 'ན་',
+            'རང་རྒྱུད་', 'ཀྱི་', 'ཉེས་པ་', 'ཆགས་སྡང་', 'སོགས་',
+            'ཟད་པར་འགྱུར་', 'ཞིང་',
+            'ཐོས་བསམ་སྒོམ་གསུམ།',
+            'བྱམས་སྙིང་རྗེ་', 'བྱང་ཆུབ་ཀྱི་སེམས་', 'སོགས་',
+            'ཡོན་ཏན་', 'ཐམས་ཅད་',
+            'ཡར་ངོའི་ཟླ་བ་ལྟར་', 'གོང་ནས་གོང་དུ་འཕེལ་བར་འགྱུར་བ་', 'འི་',
+            'བཤེས་གཉེན་དམ་པ་', 'དང་', 'གྲོགས་བཟང་པོ་', 'ནི་',
+            'རང་གི་', 'ལུས་སྲོག་བ་', 'ས་', 'ཀྱང་',
+            'གཅེས་པར་འཛིན་པ་', 'འི་',
+            'སྒོ་ནས་', 'བསམ་སྦྱོར་གཉིས་', 'ཀས་', 'ཚུལ་', 'བཞིན་དུ་',
+            'བསྟེན་པ་', 'ནི་',
+            'རྒྱལ་སྲས་', 'རྣམས་', 'ཀྱིས་',
+            'བཤེས་གཉེན་', 'བསྟེན་ཚུལ་', 'གྱི་',
+            'ལག་ལེན་', 'ཡིན་', 'ནོ་', 'ཞེས་པའོ།'
+        ];
+
+        const fullTibetanText = '༈    །དྲུག་པ་མཐུན་རྐྱེན་བཤེས་གཉེན་བསྟེན་པ་ནི༑\nདོན་ནི།   བཤེས་གྲོགས་གང་ཞིག་བསྙེན་པའམ་བསྟེན་ན་རང་རྒྱུད་ཀྱི་ཉེས་པ་ཆགས་སྡང་སོགས་ཟད་པར་འགྱུར་ཞིང་།   ཐོས་བསམ་སྒོམ་གསུམ། བྱམས་སྙིང་རྗེ་བྱང་ཆུབ་ཀྱི་སེམས་སོགས་ཡོན་ཏན་ཐམས་ཅད་ཡར་ངོའི་ཟླ་བ་ལྟར་གོང་ནས་གོང་དུ་འཕེལ་བར་འགྱུར་བའི་བཤེས་གཉེན་དམ་པ་དང་གྲོགས་བཟང་པོ་ནི་རང་གི་ལུས་སྲོག་བས་ཀྱང་གཅེས་པར་འཛིན་པའི་སྒོ་ནས་བསམ་སྦྱོར་གཉིས་ཀས་ཚུལ་བཞིན་དུ་བསྟེན་པ་ནི་རྒྱལ་སྲས་རྣམས་ཀྱིས་བཤེས་གཉེན་བསྟེན་ཚུལ་གྱི་ལག་ལེན་ཡིན་ནོ་ཞེས་པའོ།';
+
+        // ── Build vocabulary map (first occurrence only, deduped) ────────────────
+        const vocabBody = document.getElementById('vocabBody');
+        const vocabMap = new Map();
+        const seenTibetan = new Set();
+
+        vocabulary.forEach((item, index) => {
+            const key = item.tibetan;
+            if (!seenTibetan.has(key)) {
+                seenTibetan.add(key);
+                vocabMap.set(key, index);
+                const row = document.createElement('tr');
+                row.dataset.index = index;
+                row.innerHTML = `
+                    <td class="tibetan-term">${item.tibetan}</td>
+                    <td class="translation">${item.translation}</td>
+                `;
+                vocabBody.appendChild(row);
+            }
+        });
+
+        // ── Build interactive text ───────────────────────────────────────────────
+        const tibetanText = document.getElementById('tibetanText');
+        let html = '';
+
+        textSequence.forEach((word) => {
+            const vocabIndex = vocabMap.get(word);
+            if (vocabIndex !== undefined) {
+                html += `<span class="tibetan-word" data-vocab="${vocabIndex}">${word}</span>`;
+            } else {
+                html += `<span style="margin: 0 2px;">${word}</span>`;
+            }
+        });
+
+        tibetanText.innerHTML = html;
+
+        // Full plain text
+        document.getElementById('tibetanTextFull').textContent = fullTibetanText;
+
+        // ── Click handlers ───────────────────────────────────────────────────────
+        document.querySelectorAll('.tibetan-word').forEach(span => {
+            span.addEventListener('click', function() {
+                highlightWord(parseInt(this.dataset.vocab));
+            });
+        });
+
+        function highlightWord(vocabIndex) {
+            document.querySelectorAll('.tibetan-word').forEach(w => w.classList.remove('active'));
+            document.querySelectorAll('table tr').forEach(r => r.classList.remove('highlighted'));
+
+            document.querySelectorAll('.tibetan-word').forEach(w => {
+                if (parseInt(w.dataset.vocab) === vocabIndex) {
+                    w.classList.add('active');
+                }
+            });
+
+            const row = document.querySelector(`[data-index="${vocabIndex}"]`);
+            if (row) {
+                row.classList.add('highlighted');
+                row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                const word = vocabulary[vocabIndex];
+                document.getElementById('stats').textContent =
+                    `📖 ${word.tibetan} → ${word.translation}`;
+            }
+        }
+
+        function toggleFrench() {
+            const frenchText = document.getElementById('french-text');
+            const button = event.target;
+            if (frenchText.style.display === 'none') {
+                frenchText.style.display = 'block';
+                button.textContent = '📖 Masquer la traduction';
+            } else {
+                frenchText.style.display = 'none';
+                button.textContent = '📖 Afficher la traduction';
+            }
+        }
+    </script>
+</body>
+</html>
