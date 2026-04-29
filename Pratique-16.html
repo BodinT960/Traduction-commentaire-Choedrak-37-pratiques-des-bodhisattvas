@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intégrer l’ingratitude le long du chemin - Vocabulaire</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px; min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 30px; text-align: center;
+        }
+        .header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 30px 0 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .back-button {
+            display: inline-block; background: rgba(255,255,255,0.2); color: white;
+            padding: 10px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9em;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+        }
+        .back-button:hover {
+            background: rgba(255,255,255,0.3); transform: translateX(-3px);
+            border-color: rgba(255,255,255,0.6);
+        }
+        .header h1 { font-size: 1.8em; margin-bottom: 5px; }
+        .header p { font-size: 0.95em; opacity: 0.9; }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+        @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
+        .section { padding: 20px; border-radius: 8px; background: #f8f9fa; }
+        .section h2 {
+            color: #667eea; margin-bottom: 15px; font-size: 1.2em;
+            border-bottom: 2px solid #667eea; padding-bottom: 10px;
+        }
+        .text-box {
+            background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
+            border-left: 4px solid #667eea; line-height: 2.2; word-break: break-word;
+        }
+        .text-box-full {
+            background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
+            border-left: 4px solid #667eea; line-height: 2.2; word-break: break-word;
+            font-size: 0.95em; color: #333; white-space: pre-wrap;
+        }
+        .tibetan-word {
+            cursor: pointer; padding: 4px 8px; border-radius: 4px;
+            transition: all 0.2s ease; display: inline-block; font-weight: 500;
+            color: #764ba2; background: #e8e0f5; margin: 2px 2px; border: 1px solid #d0c4e8;
+        }
+        .tibetan-word:hover {
+            background: #667eea; color: white; transform: scale(1.08);
+            border-color: #667eea; box-shadow: 0 2px 6px rgba(102,126,234,0.4);
+        }
+        .tibetan-word.active {
+            background: #667eea; color: white;
+            box-shadow: 0 0 12px rgba(102,126,234,0.8); border-color: #667eea;
+        }
+        .vocabulary-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95em; }
+        .vocabulary-table thead { background: #667eea; color: white; }
+        .vocabulary-table th { padding: 12px; text-align: left; font-weight: 600; }
+        .vocabulary-table td { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+        .vocabulary-table tbody { max-height: 600px; overflow-y: auto; display: block; }
+        .vocabulary-table thead { display: table; width: 100%; }
+        .vocabulary-table tr { display: table; width: 100%; transition: background-color 0.2s ease; }
+        .vocabulary-table tbody tr:hover { background-color: #f0f0f0; }
+        .vocabulary-table tbody tr.highlighted {
+            background-color: #e3f2fd !important;
+            border-left: 4px solid #667eea; padding-left: 8px;
+        }
+        .tibetan-term { color: #764ba2; font-weight: 600; width: 40%; }
+        .translation { color: #333; width: 60%; }
+        .stats {
+            background: #e8e0f5; padding: 12px; border-radius: 6px; margin-top: 15px;
+            color: #764ba2; font-weight: 500; font-size: 0.9em; min-height: 20px;
+        }
+        .toggle-btn {
+            background: #667eea; color: white; border: none; padding: 10px 15px;
+            border-radius: 5px; cursor: pointer; font-size: 0.9em;
+            transition: all 0.3s ease; margin-top: 10px;
+        }
+        .toggle-btn:hover {
+            background: #764ba2; transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: #667eea; }
+        #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: #764ba2; font-weight: 600; }
+        #french-text p { font-size: 0.95em; line-height: 1.8; color: #333; margin: 0 0 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <a href="index.html" class="back-button">← Retour à l'accueil</a>
+        </div>
+        <div class="header">
+            <h1>Intégrer l’ingratitude le long du chemin</h1>
+            <p>Seizième pratique - Vocabulaire Interactif</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Texte Tibétain</h2>
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #764ba2; font-size: 0.9em; border-left: 4px solid #667eea;">
+                    💡 Cliquez sur les mots tibétains pour voir leur traduction
+                </div>
+                <div class="text-box" id="tibetanText"></div>
+                <div id="stats" class="stats"></div>
+            </div>
+            <div class="section">
+                <h2>Vocabulaire</h2>
+                <table class="vocabulary-table">
+                    <thead><tr><th>Terme Tibétain</th><th>Traduction</th></tr></thead>
+                    <tbody id="vocabBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Texte Tibétain Complet</h2>
+                <div class="text-box-full" id="tibetanTextFull"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Traduction Française</h2>
+                <button class="toggle-btn" onclick="toggleFrench()" style="width: 100%; margin-top: 0;">📖 Afficher la traduction</button>
+                <div id="french-text" class="text-box" style="display: none; margin-top: 10px;">
+                    <h3>Seizième pratique : Intégrer l’ingratitude</h3>
+                    <h4>Le sens :</h4>
+                    <p>
+                        Nous avons constamment chéri et aimé cette personne comme notre propre enfant à travers une aide spirituelle et matérielle. Bien qu’elle finit par nous considérer comme un ennemi qui cherche à tout faire pour nous nuire par le biais des trois portes, nous ne nous vengerons pas par colère. 
+                    </p>
+                    <p>
+                        Une vieille mère dont l’enfant troublé par des influences néfastes et frappé par la maladie, même s’il lui a causé beaucoup de difficultés, ne répondra pas par de la nuisance, au contraire elle pense avec délicatesse à libérer son enfant de cette maladie et de ces mauvaises influences, et elle sait que ses mauvais agissements se sont produits sous le joug des émotions perturbatrices considérées comme ennemis. 
+                    </p>
+                    <p>
+                        Nous nous familiarisons ainsi à redoubler d’affection en réfléchissant à ce qui n’est pas approprié et à nous libérer des émotions perturbatrices.  « Cette manière de supporter les mauvais agissements d’autrui le long du chemin est l’une des pratiques des Fils des Vainqueurs ».
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const vocabulary = [
+            { tibetan: '༄༅།', translation: 'Signe de tête (yig mgo)' },
+            { tibetan: '།', translation: 'shad (ponctuation)' },
+            { tibetan: 'དོན་ནི།', translation: 'le sens' },
+            { tibetan: 'བདག་གིས་', translation: 'par moi (ergatif)' },
+            { tibetan: 'ཕར་ལ་', translation: 'envers lui / là-bas' },
+            { tibetan: 'དུས་རྟག་ཏུ་', translation: 'continuellement, toujours' },
+            { tibetan: 'ཆོས་', translation: 'Dharma, spirituel' },
+            { tibetan: 'དང་', translation: 'et' },
+            { tibetan: 'ཟང་ཟིང་', translation: 'matériel, richesses' },
+            { tibetan: 'གི་', translation: 'particule : génitif' },
+            { tibetan: 'སྒོ་ནས་', translation: 'par le biais de, au moyen de' },
+            { tibetan: 'བུ་', translation: 'fils, enfant' },
+            { tibetan: 'བཞིན་དུ་', translation: 'comme, de la même manière' },
+            { tibetan: 'གཅེས་པར་', translation: 'chérir, aimer avec soin' },
+            { tibetan: 'བསྐྱངས་པའི་', translation: 'avoir protégé, avoir élevé' },
+            { tibetan: 'མིས་', translation: 'par la personne (homme + ergatif)' },
+            { tibetan: 'བདག་ལ་', translation: 'à moi' },
+            { tibetan: 'ཚུར་', translation: 'vers ici (en retour)' },
+            { tibetan: 'སྒོ་གསུམ་', translation: 'les trois portes (corps, parole, esprit)' },
+            { tibetan: 'ཀ་ནས་', translation: 'depuis toutes (les trois)' },
+            { tibetan: 'གནོད་པ་', translation: 'nuisance, dommage, mal' },
+            { tibetan: 'ཅི་འཁྱོལ་', translation: 'autant que possible, tout ce qui peut' },
+            { tibetan: 'གྱི་', translation: 'particule : génitif' },
+            { tibetan: 'དགྲ་', translation: 'ennemi' },
+            { tibetan: 'ལྟ་བར་བྱེད་', translation: 'considérer, regarder comme' },
+            { tibetan: 'ནའང་', translation: 'bien que, même si' },
+            { tibetan: 'དེ་ལ་', translation: 'ainsi, à cet égard' },
+            { tibetan: 'ཁྲོ་འཁོན་', translation: 'colère et rancœur' },
+            { tibetan: 'གྱིས་', translation: 'par (instrumental)' },
+            { tibetan: 'གནོད་ལན་', translation: 'vengeance, réponse nuisible' },
+            { tibetan: 'མི་བྱེད་པར་', translation: 'sans faire' },
+            { tibetan: 'མ་ཟད།', translation: 'non seulement cela' },
+            { tibetan: 'གདོན་', translation: 'influence néfaste, esprit' },
+            { tibetan: 'ནད་', translation: 'maladie' },
+            { tibetan: 'ཀྱིས་', translation: 'particule : génitif' },
+            { tibetan: 'བཏབ་པའི་', translation: 'frappé par, affecté par' },
+            { tibetan: 'སྨྱོན་པས་', translation: 'par le fou (enfant devenu fou)' },
+            { tibetan: 'མ་རྒན་', translation: 'vieille mère' },
+            { tibetan: 'ལ་', translation: 'particule oblique' },
+            { tibetan: 'སྣ་ཚོགས་', translation: 'diverses sortes' },
+            { tibetan: 'བྱེད་', translation: 'faire, agir, exécuter, fait' },
+            { tibetan: 'འདི་', translation: 'cette, ce, ces' },
+            { tibetan: 'བྲལ་ན་', translation: 'si [il était] séparé de / libéré de' },
+            { tibetan: 'སྙམ་དུ་', translation: 'en pensant que' },
+            { tibetan: 'བརྩེ་བར་བྱེད་པ་', translation: 'aimer avec tendresse / affection' },
+            { tibetan: 'བཞིན་དུ།', translation: 'comme, de la même manière' },   
+            { tibetan: 'གནོད་བྱེད་', translation: 'le malfaiteur (celui qui nuit)' },
+            { tibetan: 'ཉོན་མོངས་པའི་', translation: 'des émotions perturbatrices' },         
+            { tibetan: 'དབང་དུ་སོང་', translation: 'être sous le pouvoir de' },
+            { tibetan: 'ནས་', translation: 'particule ablative' },
+            { tibetan: 'ལོག་སྒྲུབ་', translation: 'mauvais agissements, ingratitude' },
+            { tibetan: 'ལྟར་', translation: 'comme' },
+            { tibetan: 'བྱེད་པས་', translation: 'faire, agir, exécuter, se référer (à)' },
+            { tibetan: 'ཅི་མ་རུང་', translation: 'ne serait-ce pas merveilleux (souhait)' },
+            { tibetan: 'ཉོན་མོངས་པ་', translation: 'les émotions perturbatrices' },
+            { tibetan: 'ལྷག་པར་', translation: 'particulièrement, d\'autant plus' },
+            { tibetan: 'བརྩེ་བ་', translation: 'bienveillance, affection, compassion, amour, soin' },
+            { tibetan: 'སྒོམ་པར་བྱེད་པ་', translation: 'méditer, se familiariser' },
+            { tibetan: 'ནི་', translation: 'thématiseur (quant à)' },
+            { tibetan: 'རྒྱལ་སྲས་རྣམས་', translation: 'les Fils des Vainqueurs' },
+            { tibetan: 'གཞན་', translation: 'les autres' },
+            { tibetan: 'གྱིས་', translation: 'particule : génitif' },
+            { tibetan: 'བྱེད་པ་', translation: 'action, acte' },
+            { tibetan: 'ལམ་དུ་འཁྱེར་ཚུལ་', translation: 'manière d\'intégrer sur le chemin' },
+            { tibetan: 'ལག་ལེན་', translation: 'pratique' },
+            { tibetan: 'ཡིན་ནོ་', translation: 'est (terminaison)' },
+            { tibetan: 'ཞེས་པའོ།', translation: 'ainsi est-il dit.' }
+        ];
+
+        const textSequence = [
+            '༄༅།', '།', 'དོན་ནི།', 'བདག་གིས་', 'ཕར་ལ་', 'དུས་རྟག་ཏུ་', 'ཆོས་', 'དང་', 'ཟང་ཟིང་', 'གི་', 'སྒོ་ནས་', 'བུ་', 'བཞིན་དུ་', 'གཅེས་པར་', 'བསྐྱངས་པའི་', 'མིས་', '།',
+            'བདག་ལ་', 'ཚུར་', 'སྒོ་གསུམ་', 'ཀ་ནས་', 'གནོད་པ་', 'ཅི་འཁྱོལ་', 'གྱི་', 'སྒོ་ནས་', 'དགྲ་', 'བཞིན་དུ་', 'ལྟ་བར་བྱེད་', 'ནའང་', 
+            'དེ་ལ་', 'ཁྲོ་འཁོན་', 'གྱིས་', 'གནོད་ལན་', 'མི་བྱེད་པར་', 'མ་ཟད།',
+            'གདོན་', 'དང་', 'ནད་', 'ཀྱིས་', 'བཏབ་པའི་', 'བུ་', 'སྨྱོན་པས་', 'མ་རྒན་', 'ལ་', 'གནོད་པ་', 'སྣ་ཚོགས་', 'བྱེད་', 'ནའང་', 
+            'དེ་ལ་', 'མ་རྒན་', 'གྱིས་', 'གནོད་པ་', 'མི་བྱེད་པར་', 'མ་ཟད།', 
+            'བུ་', 'འདི་', 'ནད་', 'གདོན་', 'འདི་', 'དང་', 'བྲལ་ན་', 'སྙམ་དུ་', 'བརྩེ་བར་བྱེད་པ་', 'བཞིན་དུ།',
+            'གནོད་བྱེད་', 'འདི་', 'ཉོན་མོངས་པའི་', 'དབང་དུ་སོང་', 'ནས་', 'ལོག་སྒྲུབ་', 'འདི་', 'ལྟར་', 'བྱེད་པས་', 
+            'འདི་', 'ཉོན་མོངས་པ་', 'དང་', 'བྲལ་ན་', 'ཅི་མ་རུང་', 'སྙམ་དུ་', 'དེ་ལ་', 'ལྷག་པར་', 'བརྩེ་བ་', 'སྒོམ་པར་བྱེད་པ་', 'ནི་',
+            'རྒྱལ་སྲས་རྣམས་', 'ཀྱིས་', 'གཞན་','གྱིས་', 'ལོག་སྒྲུབ་', 'བྱེད་པ་', 'ལམ་དུ་འཁྱེར་ཚུལ་', 'གྱི་', 'ལག་ལེན་', 'ཡིན་ནོ་', 'ཞེས་པའོ།'
+        ];
+
+        const fullTibetanText = `༄༅།   །དཀའ་བ་ལམ་དུ་འཁྱེར་བ་ལ་གཉིས། དྲིན་ལན་ལོག་འཇལ་ལམ་དུ་འཁྱེར་བ་དང་། བརྙས་ཐབས་བྱེད་པ་ལམ་དུ་འཁྱེར་བའོ། །དང་པོ་ནི། ༄༅། དོན་ནི། བདག་གིས་ཕར་ལ་དུས་རྟག་ཏུ་ཆོས་དང་ཟང་ཟིང་གི་སྒོ་ནས་བུ་བཞིན་དུ་གཅེས་པར་བསྐྱངས་པའི་མིས།བདག་ལ་ཚུར་སྒོ་གསུམ་ཀ་ནས་གནོད་པ་ཅི་འཁྱོལ་གྱི་སྒོ་ནས་དགྲ་བཞིན་དུ་ལྟ་བར་བྱེད་ནའང་དེ་ལ་ཁྲོ་འཁོན་གྱིས་གནོད་ལན་མི་བྱེད་པར་མ་ཟད། གདོན་དང་ནད་ཀྱིས་བཏབ་པའི་བུ་སྨྱོན་པས་མ་རྒན་ལ་གནོད་པ་སྣ་ཚོགས་བྱེད་ནའང་དེ་ལ་མ་རྒན་གྱིས་གནོད་པ་མི་བྱེད་པར་མ་ཟད། བུ་འདི་ནད་གདོན་འདི་དང་བྲལ་ན་སྙམ་དུ་བརྩེ་བར་བྱེད་པ་བཞིན་དུ། གནོད་བྱེད་འདི་ཉོན་མོངས་པའི་དབང་དུ་སོང་ནས་ལོག་སྒྲུབ་འདི་ལྟར་བྱེད་པས་འདི་ཉོན་མོངས་པ་དང་བྲལ་ན་ཅི་མ་རུང་སྙམ་དུ་དེ་ལ་ལྷག་པར་བརྩེ་བ་སྒོམ་པར་བྱེད་པ་ནི་རྒྱལ་སྲས་རྣམས་ཀྱིས་གཞན་གྱིས་ལོག་སྒྲུབ་བྱེད་པ་ལམ་དུ་འཁྱེར་ཚུལ་གྱི་ལག་ལེན་ཡིན་ནོ་ཞེས་པའོ།`;
+
+        const vocabBody = document.getElementById('vocabBody');
+        const vocabMap = new Map();
+        const seenTibetan = new Set();
+
+        vocabulary.forEach((item, index) => {
+            const key = item.tibetan;
+            if (!seenTibetan.has(key)) {
+                seenTibetan.add(key);
+                vocabMap.set(key, index);
+            }
+            const row = document.createElement('tr');
+            row.dataset.index = index;
+            row.innerHTML = `
+                <td class="tibetan-term">${item.tibetan}</td>
+                <td class="translation">${item.translation}</td>
+            `;
+            vocabBody.appendChild(row);
+        });
+
+        const tibetanText = document.getElementById('tibetanText');
+        let html = '';
+
+        textSequence.forEach((word) => {
+            const vocabIndex = vocabMap.get(word);
+            if (vocabIndex !== undefined) {
+                html += `<span class="tibetan-word" data-vocab="${vocabIndex}">${word}</span>`;
+            } else {
+                html += `<span style="margin: 0 2px;">${word}</span>`;
+            }
+        });
+
+        tibetanText.innerHTML = html;
+        document.getElementById('tibetanTextFull').textContent = fullTibetanText;
+
+        document.querySelectorAll('.tibetan-word').forEach(span => {
+            span.addEventListener('click', function() {
+                highlightWord(parseInt(this.dataset.vocab));
+            });
+        });
+
+        function highlightWord(vocabIndex) {
+            document.querySelectorAll('.tibetan-word').forEach(w => w.classList.remove('active'));
+            document.querySelectorAll('table tr').forEach(r => r.classList.remove('highlighted'));
+            document.querySelectorAll('.tibetan-word').forEach(w => {
+                if (parseInt(w.dataset.vocab) === vocabIndex) w.classList.add('active');
+            });
+            const row = document.querySelector(`[data-index="${vocabIndex}"]`);
+            if (row) {
+                row.classList.add('highlighted');
+                row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                const word = vocabulary[vocabIndex];
+                document.getElementById('stats').textContent = 
+                    `📖 ${word.tibetan} → ${word.translation}`;
+            }
+        }
+
+        function toggleFrench() {
+            const frenchText = document.getElementById('french-text');
+            const button = event.target;
+            if (frenchText.style.display === 'none') {
+                frenchText.style.display = 'block';
+                button.textContent = '📖 Masquer la traduction';
+            } else {
+                frenchText.style.display = 'none';
+                button.textContent = '📖 Afficher la traduction';
+            }
+        }
+    </script>
+</body>
+</html>
