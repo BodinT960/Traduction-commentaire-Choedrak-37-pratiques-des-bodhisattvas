@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trentième pratique - Vocabulaire Interactif</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px; min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 30px 0 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .back-button {
+            display: inline-block; background: rgba(255,255,255,0.2); color: white;
+            padding: 10px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9em;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+        }
+        .back-button:hover {
+            background: rgba(255,255,255,0.3); transform: translateX(-3px);
+            border-color: rgba(255,255,255,0.6);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 30px; text-align: center;
+        }
+        .header h1 { font-size: 1.8em; margin-bottom: 5px; }
+        .header p { font-size: 0.95em; opacity: 0.9; }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+        @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
+        .section { padding: 20px; border-radius: 8px; background: #f8f9fa; }
+        .section h2 {
+            color: #667eea; margin-bottom: 15px; font-size: 1.2em;
+            border-bottom: 2px solid #667eea; padding-bottom: 10px;
+        }
+        .text-box {
+            background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
+            border-left: 4px solid #667eea; line-height: 2.2; word-break: break-word;
+        }
+        .text-box-full {
+            background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
+            border-left: 4px solid #667eea; line-height: 2.2; word-break: break-word;
+            font-size: 0.95em; color: #333;
+        }
+        .tibetan-word {
+            cursor: pointer; padding: 4px 8px; border-radius: 4px;
+            transition: all 0.2s ease; display: inline-block; font-weight: 500;
+            color: #764ba2; background: #e8e0f5; margin: 2px 2px; border: 1px solid #d0c4e8;
+        }
+        .tibetan-word:hover {
+            background: #667eea; color: white; transform: scale(1.08);
+            border-color: #667eea; box-shadow: 0 2px 6px rgba(102,126,234,0.4);
+        }
+        .tibetan-word.active {
+            background: #667eea; color: white;
+            box-shadow: 0 0 12px rgba(102,126,234,0.8); border-color: #667eea;
+        }
+        .vocabulary-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95em; }
+        .vocabulary-table thead { background: #667eea; color: white; }
+        .vocabulary-table th { padding: 12px; text-align: left; font-weight: 600; }
+        .vocabulary-table td { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+        .vocabulary-table tbody { max-height: 500px; overflow-y: auto; display: block; }
+        .vocabulary-table thead, .vocabulary-table tr { display: table; width: 100%; table-layout: fixed; }
+        .vocabulary-table tbody tr.highlighted {
+            background-color: #e3f2fd !important;
+            border-left: 4px solid #667eea;
+        }
+        .tibetan-term { color: #764ba2; font-weight: 600; width: 40%; }
+        .translation { color: #333; width: 60%; }
+        .stats {
+            background: #e8e0f5; padding: 12px; border-radius: 6px; margin-top: 15px;
+            color: #764ba2; font-weight: 500; font-size: 0.9em; min-height: 20px;
+        }
+        .toggle-btn {
+            background: #667eea; color: white; border: none; padding: 12px 15px;
+            border-radius: 5px; cursor: pointer; font-size: 1em;
+            transition: all 0.3s ease; margin-top: 10px; font-weight: bold;
+        }
+        .toggle-btn:hover { background: #764ba2; transform: translateY(-2px); }
+        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: #667eea; }
+        #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: #764ba2; font-weight: 600; }
+        #french-text p { font-size: 0.95em; line-height: 1.8; color: #333; margin: 0 0 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <a href="index.html" class="back-button">← Retour à l'accueil</a>
+        </div>
+        <div class="header">
+            <h1>La pāramitā de la sagesse</h1>
+            <p>Trentième pratique - Vocabulaire Interactif</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Texte Tibétain Interactif</h2>
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #764ba2; font-size: 0.9em; border-left: 4px solid #667eea;">
+                    💡 Cliquez sur les mots tibétains pour voir leur traduction
+                </div>
+                <div class="text-box" id="tibetanText"></div>
+                <div id="stats" class="stats">Sélectionnez un mot pour voir sa définition.</div>
+            </div>
+            <div class="section">
+                <h2>Vocabulaire</h2>
+                <table class="vocabulary-table">
+                    <thead><tr><th style="width:40%;">Terme</th><th style="width:60%;">Traduction</th></tr></thead>
+                    <tbody id="vocabBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Texte Tibétain Complet</h2>
+                <div class="text-box-full" id="tibetanTextFull"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Traduction Française</h2>
+                <button class="toggle-btn" onclick="toggleFrench(this)" style="width: 100%;">📖 Afficher la traduction française</button>
+                <div id="french-text" class="text-box" style="display: none; margin-top: 15px;">
+                    <h3>Trentième pratique : La pāramitā de la sagesse</h3>
+                    <h4>Sixième point : L'entraînement à la sagesse</h4>
+                    <h4>Le sens :</h4>
+                    <p>
+                        Si nous n'avons pas la sagesse qui réalise la compréhension directe de la vacuité, nous sommes semblables à un guide pour aveugles. En nous entraînant seulement à l'application de la première à la cinquième pāramitās, nous sommes comme un groupe d'aveugles. Nous ne pourrons pas obtenir l'Éveil parfait, et nous n'aurons pas la possibilité de nous déplacer dans la cité de l'omniscience.
+                    </p>
+                    <p>
+                        Nous nous familiarisons ainsi à la sagesse qui ne conceptualise pas les trois sphères comme réellement existantes : l'objet de méditation, le méditant et la méditation, associée à l'immense variété des moyens habiles comme la grande compassion, la bodhicitta...
+                    </p>
+                    <p>
+                        Nous nous familiarisons à la sagesse qui réalise la vacuité en employant ces différents moyens ; si cela n'est pas fait correctement, il sera impossible d'atteindre l'omniscience. Nous nous entraînons parfaitement aux trois aspects de sagesse.
+                    </p>
+                    <p>
+                        « Cette manière d'étudier la pāramitā de la sagesse est l'une des [37] pratiques des Fils des Vainqueurs ».
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const vocabulary = [
+            { tibetan: '།',                               translation: 'shad — ponctuation tibétaine' },
+            { tibetan: 'དྲུག་པ་',                         translation: 'sixièmement' },
+            { tibetan: 'ཤེས་རབ་',                         translation: 'sagesse' },
+            { tibetan: 'ལ་',                               translation: 'particule oblique' },
+            { tibetan: 'བསླབ་པ་།',                        translation: 'l\'entraînement' },
+            { tibetan: 'ནི།',                              translation: 'particule : thématiseur' },
+            { tibetan: 'དོན་ནི།',                         translation: 'le sens' },
+            { tibetan: 'དམིགས་བུ་',                       translation: 'guide pour aveugles' },
+            { tibetan: 'ལྟ་བུ་',                          translation: 'comme, tel que, similaire' },
+            { tibetan: 'འི་',                              translation: 'particule : le génitif' },
+            { tibetan: 'སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་',      translation: 'la compréhension directe de la vacuité' },
+            { tibetan: 'ཀྱིས་',                            translation: 'particule : l\'instrumental / ergatif' },
+            { tibetan: 'ཟིན་པ་མེད་ན།',                   translation: 'si on n\'a pas saisi / s\'il n\'y a pas' },
+            { tibetan: 'ལོང་བ་',                          translation: 'aveugle' },
+            { tibetan: 'ཚོགས་',                           translation: 'groupe, assemblée, rassemblement' },
+            { tibetan: 'ཕར་རོལ་ཏུ་ཕྱིན་པ་',               translation: 'pāramitā' },
+            { tibetan: 'དང་པོ་',                          translation: 'première' },
+            { tibetan: 'ལྔ་',                              translation: 'cinquième' },
+            { tibetan: 'ཉམས་ལེན་',                        translation: 'pratique, expérience, application' },
+            { tibetan: 'ཙམ་ལ་',                           translation: 'juste, seulement, simplement' },
+            { tibetan: 'བསླབ་པ་',                         translation: 'entraînements' },
+            { tibetan: 'ཡིས་',                             translation: 'particule : l\'instrumental' },
+            { tibetan: 'ནི་',                              translation: 'particule emphatique / thématiseur' },
+            { tibetan: 'རྫོགས་པའི་བྱང་ཆུབ་འཐོབ་པར་',     translation: 'obtenir le parfait éveil + particule oblique' },
+            { tibetan: 'མི་ནུས་པ་སྟེ་',                   translation: 'ne pas être en possibilité + connecteur' },
+            { tibetan: 'རྣམ་པ་ཐམས་ཅད་མཁྱེན་པ་',           translation: 'omniscience, connaissance de tout' },
+            { tibetan: 'གྲོང་ཁྱེར་',                      translation: 'ville, village, commune' },
+            { tibetan: 'དུ་',                              translation: 'particule oblique : le locatif' },
+            { tibetan: 'བགྲོད་མི་ནུས་པས་ན།',             translation: 'ne pas pouvoir progresser + particule causale' },
+            { tibetan: 'སྙིང་རྗེ་ཆེན་པོ་',                translation: 'grande compassion' },
+            { tibetan: 'དང་',                              translation: 'particule : connecteur' },
+            { tibetan: 'བྱང་ཆུབ་ཀྱི་སེམས་',               translation: 'bodhicitta, esprit d\'éveil' },
+            { tibetan: 'སོགས་',                            translation: 'etc.' },
+            { tibetan: 'ཐབས་ཀྱི་ཆ་རྒྱ་ཆེན་པོ་',           translation: 'immense variété des moyens habiles' },
+            { tibetan: 'དང་ལྡན་ཞིང་།',                   translation: 'celui qui possède + connecteur' },
+            { tibetan: 'གང་བསྒོམ་བྱ།',                   translation: 'l\'objet de méditation' },
+            { tibetan: 'གང་གིས་སྒོམ་པ་པོ།',              translation: 'le méditant' },
+            { tibetan: 'ཚུལ་ཇི་ལྟར་སྒོམ་པ་སྟེ་',          translation: 'la manière de méditer, c\'est-à-dire' },
+            { tibetan: 'འཁོར་གསུམ་པོ་',                  translation: 'les trois sphères' },
+            { tibetan: 'བདེན་གྲུབ་ཏུ་',                   translation: 'comme réellement existant + particule' },
+            { tibetan: 'རྣམ་པར་མི་རྟོག་པའི་ཤེས་རབ་',      translation: 'sagesse sans conceptualisation' },
+            { tibetan: 'བསྒོམ་པ་',                        translation: 'méditer, cultiver' },
+            { tibetan: 'ཐམས་ཅད་མཁྱེན་པ་',                translation: 'omniscience' },
+            { tibetan: 'འཐོབ་བྱེད་',                      translation: 'ce qui permet d\'obtenir' },
+            { tibetan: 'ཀྱི་',                             translation: 'particule : le génitif' },
+            { tibetan: 'རྒྱུ་མེད་དུ་མི་རུང་བ་',            translation: 'il ne serait pas approprié de ne pas avoir de cause' },
+            { tibetan: 'ཡིན་ལ།',                          translation: 'puisque / étant donné que c\'est le cas' },
+            { tibetan: 'དེས་ན་',                           translation: 'c\'est pourquoi, pour cette raison' },
+            { tibetan: 'ཐབས་ཀྱི་ཆ་དང་ལྡན་པའི་',           translation: 'doté des moyens habiles + génitif' },
+            { tibetan: 'སྒོམ་པ་སོགས་',                    translation: 'méditer etc.' },
+            { tibetan: 'རྣམ་པ་གསུམ་',                     translation: 'les trois aspects' },
+            { tibetan: 'སློབ་པ་',                          translation: 'apprendre, s\'entraîner' },
+            { tibetan: 'རྒྱལ་སྲས་རྣམས་',                  translation: 'les fils des vainqueurs (bodhisattvas)' },
+            { tibetan: 'ཕར་ཕྱིན་',                        translation: 'pāramitā, perfection' },
+            { tibetan: 'སློབ་ཚུལ་',                        translation: 'manière d\'apprendre, d\'enseigner, de former' },
+            { tibetan: 'གྱི་',                             translation: 'particule : le génitif' },
+            { tibetan: 'ལག་ལེན་',                         translation: 'pratique' },
+            { tibetan: 'ཡིན་',                             translation: 'est, être' },
+            { tibetan: 'ནོ་',                              translation: 'particule finale' },
+            { tibetan: 'ཞེས་པ་',                          translation: 'ainsi, particule indiquant la citation' },
+            { tibetan: 'འོ།',                              translation: 'particule finale' }
+        ];
+
+        const textSequence = [
+            '།',
+            // དྲུག་པ་ཤེས་རབ་ལ་བསླབ་པ་ནི། དོན་ནི།
+            'དྲུག་པ་', 'ཤེས་རབ་', 'ལ་', 'བསླབ་པ་།', 'ནི།', 'དོན་ནི།',
+            // དམིགས་བུ་ལྟ་བུའི་སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་ཀྱིས་ཟིན་པ་མེད་ན།
+            'དམིགས་བུ་', 'ལྟ་བུ་', 'འི་', 'སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་', 'ཀྱིས་', 'ཟིན་པ་མེད་ན།',
+            // ལོང་བའི་ཚོགས་ལྟ་བུའི་ཕར་རོལ་ཏུ་ཕྱིན་པ་དང་པོ་ལྔའི་ཉམས་ལེན་ཙམ་ལ་བསླབ་པ་ཡིས་ནི་
+            'ལོང་བ་', 'འི་', 'ཚོགས་', 'ལྟ་བུ་', 'འི་', 'ཕར་རོལ་ཏུ་ཕྱིན་པ་', 'དང་པོ་', 'ལྔ་', 'འི་',
+            'ཉམས་ལེན་', 'ཙམ་ལ་', 'བསླབ་པ་', 'ཡིས་', 'ནི་',
+            // རྫོགས་པའི་བྱང་ཆུབ་འཐོབ་པར་མི་ནུས་པ་སྟེ་རྣམ་པ་ཐམས་ཅད་མཁྱེན་པའི་གྲོང་ཁྱེར་དུ་བགྲོད་མི་ནུས་པས་ན།
+            'རྫོགས་པའི་བྱང་ཆུབ་འཐོབ་པར་', 'མི་ནུས་པ་སྟེ་',
+            'རྣམ་པ་ཐམས་ཅད་མཁྱེན་པ་', 'འི་', 'གྲོང་ཁྱེར་', 'དུ་', 'བགྲོད་མི་ནུས་པས་ན།',
+            // སྙིང་རྗེ་ཆེན་པོ་དང་བྱང་ཆུབ་ཀྱི་སེམས་སོགས་ཐབས་ཀྱི་ཆ་རྒྱ་ཆེན་པོ་དང་ལྡན་ཞིང་།
+            'སྙིང་རྗེ་ཆེན་པོ་', 'དང་', 'བྱང་ཆུབ་ཀྱི་སེམས་', 'སོགས་',
+            'ཐབས་ཀྱི་ཆ་རྒྱ་ཆེན་པོ་', 'དང་ལྡན་ཞིང་།',
+            // གང་བསྒོམ་བྱ། གང་གིས་སྒོམ་པ་པོ། ཚུལ་ཇི་ལྟར་སྒོམ་པ་སྟེ་
+            'གང་བསྒོམ་བྱ།', 'གང་གིས་སྒོམ་པ་པོ།', 'ཚུལ་ཇི་ལྟར་སྒོམ་པ་སྟེ་',
+            // འཁོར་གསུམ་པོ་བདེན་གྲུབ་ཏུ་རྣམ་པར་མི་རྟོག་པའི་ཤེས་རབ་བསྒོམ་པ་ནི་
+            'འཁོར་གསུམ་པོ་', 'བདེན་གྲུབ་ཏུ་', 'རྣམ་པར་མི་རྟོག་པའི་ཤེས་རབ་', 'བསྒོམ་པ་', 'ནི་',
+            // ཐམས་ཅད་མཁྱེན་པ་འཐོབ་བྱེད་ཀྱི་རྒྱུ་མེད་དུ་མི་རུང་བ་ཡིན་ལ།
+            'ཐམས་ཅད་མཁྱེན་པ་', 'འཐོབ་བྱེད་', 'ཀྱི་', 'རྒྱུ་མེད་དུ་མི་རུང་བ་', 'ཡིན་ལ།',
+            // དེས་ན་ཐབས་ཀྱི་ཆ་དང་ལྡན་པའི་སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་སྒོམ་པ་སོགས་ཤེས་རབ་རྣམ་པ་གསུམ་ལ་སློབ་པ་ནི་
+            'དེས་ན་', 'ཐབས་ཀྱི་ཆ་དང་ལྡན་པའི་', 'སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་', 'སྒོམ་པ་སོགས་',
+            'ཤེས་རབ་', 'རྣམ་པ་གསུམ་', 'ལ་', 'སློབ་པ་', 'ནི་',
+            // རྒྱལ་སྲས་རྣམས་ཀྱི་ཤེས་རབ་ཀྱི་ཕར་ཕྱིན་ལ་སློབ་ཚུལ་གྱི་ལག་ལེན་ཡིན་ནོ་ཞེས་པའོ།
+            'རྒྱལ་སྲས་རྣམས་', 'ཀྱིས་',
+            'ཤེས་རབ་', 'ཀྱི་', 'ཕར་ཕྱིན་', 'ལ་', 'སློབ་ཚུལ་', 'གྱི་',
+            'ལག་ལེན་', 'ཡིན་', 'ནོ་', 'ཞེས་པ་', 'འོ།'
+        ];
+
+        const fullText = '།དྲུག་པ་ཤེས་རབ་ལ་བསླབ་པ་ནི།\nདོན་ནི། དམིགས་བུ་ལྟ་བུའི་སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་ཀྱིས་ཟིན་པ་མེད་ན།  ལོང་བའི་ཚོགས་ལྟ་བུའི་ཕར་རོལ་ཏུ་ཕྱིན་པ་དང་པོ་ལྔའི་ཉམས་ལེན་ཙམ་ལ་བསླབ་པ་ཡིས་ནི་རྫོགས་པའི་བྱང་ཆུབ་འཐོབ་པར་མི་ནུས་པ་སྟེ་རྣམ་པ་ཐམས་ཅད་མཁྱེན་པའི་གྲོང་ཁྱེར་དུ་བགྲོད་མི་ནུས་པས་ན།   སྙིང་རྗེ་ཆེན་པོ་དང་བྱང་ཆུབ་ཀྱི་སེམས་སོགས་ཐབས་ཀྱི་ཆ་རྒྱ་ཆེན་པོ་དང་ལྡན་ཞིང་།   གང་བསྒོམ་བྱ།    གང་གིས་སྒོམ་པ་པོ།   ཚུལ་ཇི་ལྟར་སྒོམ་པ་སྟེ་འཁོར་གསུམ་པོ་བདེན་གྲུབ་ཏུ་རྣམ་པར་མི་རྟོག་པའི་ཤེས་རབ་བསྒོམ་པ་ནི་ཐམས་ཅད་མཁྱེན་པ་འཐོབ་བྱེད་ཀྱི་རྒྱུ་མེད་དུ་མི་རུང་བ་ཡིན་ལ།     དེས་ན་ཐབས་ཀྱི་ཆ་དང་ལྡན་པའི་སྟོང་ཉིད་རྟོགས་པའི་ཤེས་རབ་སྒོམ་པ་སོགས་ཤེས་རབ་རྣམ་པ་གསུམ་ལ་སློབ་པ་ནི་རྒྱལ་སྲས་རྣམས་ཀྱི་ཤེས་རབ་ཀྱི་ཕར་ཕྱིན་ལ་སློབ་ཚུལ་གྱི་ལག་ལེན་ཡིན་ནོ་ཞེས་པའོ།';
+
+        const vocabBody = document.getElementById('vocabBody');
+        const tibetanText = document.getElementById('tibetanText');
+        const vocabMap = new Map();
+        const seenTibetan = new Set();
+
+        vocabulary.forEach((item, index) => {
+            const key = item.tibetan;
+            if (!seenTibetan.has(key)) {
+                seenTibetan.add(key);
+                vocabMap.set(key, index);
+            }
+            const row = document.createElement('tr');
+            row.dataset.index = index;
+            row.innerHTML = `<td class="tibetan-term">${item.tibetan}</td><td class="translation">${item.translation}</td>`;
+            vocabBody.appendChild(row);
+        });
+
+        textSequence.forEach(word => {
+            const index = vocabMap.get(word);
+            const span = document.createElement('span');
+            if (index !== undefined) {
+                span.className = 'tibetan-word';
+                span.dataset.vocab = index;
+                span.onclick = () => highlightWord(index);
+            }
+            span.textContent = word;
+            tibetanText.appendChild(span);
+            tibetanText.appendChild(document.createTextNode(' '));
+        });
+
+        document.getElementById('tibetanTextFull').textContent = fullText;
+
+        function highlightWord(index) {
+            document.querySelectorAll('.tibetan-word').forEach(w => w.classList.remove('active'));
+            document.querySelectorAll('table tr').forEach(r => r.classList.remove('highlighted'));
+
+            document.querySelectorAll(`.tibetan-word[data-vocab="${index}"]`).forEach(s => s.classList.add('active'));
+
+            const row = document.querySelector(`tr[data-index="${index}"]`);
+            if (row) {
+                row.classList.add('highlighted');
+                row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                document.getElementById('stats').textContent = `📖 ${vocabulary[index].tibetan} → ${vocabulary[index].translation}`;
+            }
+        }
+
+        function toggleFrench(btn) {
+            const text = document.getElementById('french-text');
+            if (text.style.display === 'none') {
+                text.style.display = 'block';
+                btn.textContent = '📖 Masquer la traduction';
+            } else {
+                text.style.display = 'none';
+                btn.textContent = '📖 Afficher la traduction française';
+            }
+        }
+    </script>
+</body>
+</html>
