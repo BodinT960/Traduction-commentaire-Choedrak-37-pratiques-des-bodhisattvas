@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trente-septième pratique - Vocabulaire Interactif</title>
+    <style>
+        :root {
+            --primary: #0891b2;
+            --primary-dark: #155e75;
+            --bg-gradient: linear-gradient(135deg, #0e7490 0%, #10b981 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            padding: 20px; min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 30px 0 30px; background: var(--bg-gradient);
+        }
+        .back-button {
+            display: inline-block; background: rgba(255,255,255,0.2); color: white;
+            padding: 10px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9em;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+        }
+        .back-button:hover { background: rgba(255,255,255,0.3); transform: translateX(-3px); }
+        .header { background: var(--bg-gradient); color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 1.8em; margin-bottom: 5px; }
+        .header p { font-size: 0.95em; opacity: 0.9; }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+        @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
+        .section { padding: 20px; border-radius: 8px; background: #f0fdfa; }
+        .section h2 {
+            color: var(--primary-dark); margin-bottom: 15px; font-size: 1.2em;
+            border-bottom: 2px solid var(--primary); padding-bottom: 10px;
+        }
+        .text-box {
+            background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
+            border-left: 4px solid var(--primary); line-height: 2.2; word-break: break-word;
+        }
+        .tibetan-word {
+            cursor: pointer; padding: 4px 8px; border-radius: 4px;
+            transition: all 0.2s ease; display: inline-block; font-weight: 500;
+            color: var(--primary-dark); background: #ecfeff; margin: 2px 2px; border: 1px solid #cffafe;
+        }
+        .tibetan-word:hover { background: var(--primary); color: white; transform: scale(1.08); }
+        .tibetan-word.active { background: var(--primary-dark); color: white; box-shadow: 0 0 12px rgba(8,145,178,0.5); }
+        .vocabulary-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95em; }
+        .vocabulary-table thead { background: var(--primary); color: white; display: table; width: 100%; table-layout: fixed; }
+        .vocabulary-table tbody { max-height: 500px; overflow-y: auto; display: block; width: 100%; }
+        .vocabulary-table tr { display: table; width: 100%; table-layout: fixed; }
+        .vocabulary-table td { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+        .vocabulary-table tr.highlighted { background-color: #cffafe !important; border-left: 4px solid var(--primary); }
+        .tibetan-term { color: var(--primary-dark); font-weight: 600; width: 40%; }
+        .stats {
+            background: #cffafe; padding: 12px; border-radius: 6px; margin-top: 15px;
+            color: var(--primary-dark); font-weight: 500; min-height: 45px;
+        }
+        .toggle-btn {
+            background: var(--primary); color: white; border: none; padding: 12px 15px;
+            border-radius: 5px; cursor: pointer; font-size: 1em; width: 100%;
+            transition: all 0.3s ease; font-weight: bold;
+        }
+        .toggle-btn:hover { background: var(--primary-dark); }
+        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: var(--primary); }
+        #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: var(--primary-dark); font-weight: 600; }
+        #french-text p { font-size: 0.95em; line-height: 1.8; color: #333; margin: 0 0 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <a href="index.html" class="back-button">← Retour à l'accueil</a>
+        </div>
+        <div class="header">
+            <h1>Dédier les mérites des racines vertueuses</h1>
+            <p>Trente-septième pratique - Vocabulaire Interactif</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Texte Tibétain Interactif</h2>
+                <div style="background: #e0f2fe; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #0369a1; font-size: 0.9em; border-left: 4px solid var(--primary);">
+                    💡 Cliquez sur les mots tibétains pour voir leur traduction.
+                </div>
+                <div class="text-box" id="tibetanText"></div>
+                <div id="stats" class="stats">Sélectionnez un mot pour analyser la structure.</div>
+            </div>
+
+            <div class="section">
+                <h2>Vocabulaire Analytique</h2>
+                <table class="vocabulary-table">
+                    <thead><tr><th style="width:40%;">Terme</th><th style="width:60%;">Traduction</th></tr></thead>
+                    <tbody id="vocabBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Texte Tibétain Complet</h2>
+                <div class="text-box" id="tibetanTextFull"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Traduction Française</h2>
+                <button class="toggle-btn" onclick="toggleFrench(this)">📖 Afficher la traduction française</button>
+                <div id="french-text" class="text-box" style="display: none; margin-top: 15px;">
+                    <h3>Trente-septième pratique : Dédier les mérites à l’éveil parfait</h3>
+                    <h4>Cinquième point :</h4>
+                    <h4>Le sens :</h4>
+                    <p>Ainsi comme cela a été expliqué précédemment, nous nous engageons avec effort dans la diligence transcendante, et nous appliquons avec joie la pratique des Filles et Fils des Vainqueurs afin de dissiper la souffrance de l’infinité des êtres. Toutes nos actions dites blanches des trois temps, obtenues par cet effort, nous les dédions à l’ensemble des êtres.</p>
+                    <p>L’objet de la dédicace, celui qui fait la dédicace, la dédicace réalisée de cette façon sont entièrement purifiés de la croyance en une existence réelle. Nous dédions les causes de l’éveil parfait pour le bien de tous les êtres en ayant à l’esprit cette sagesse qui permet de réaliser l'insubstantialité des trois sphères.</p>
+                    <p><em>« C’est l’un des moyens habiles de la pratique des Fils des Vainqueurs pour accroître toujours plus l’ensemble des mérites qui ne seront plus jamais perdus ».</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const vocabulary = [
+            { tibetan: 'ལྔ་པ་', translation: 'cinquièmement' },
+            { tibetan: 'དགེ་བ་', translation: 'mérites, vertu' },
+            { tibetan: 'རྫོགས་བྱང་', translation: 'éveil parfait' },
+            { tibetan: 'དུ་', translation: 'particule : l’oblique' },
+            { tibetan: 'བསྔོ་བ་', translation: 'dédier' },
+            { tibetan: 'སྤོང་བ་', translation: 'abandonner' },
+            { tibetan: 'ནི།', translation: 'particule : thématiseur' },
+            { tibetan: 'དོན་ནི།', translation: 'Le sens :' },
+            { tibetan: 'སྔར་', translation: 'précédemment, précédent' },
+            { tibetan: 'བཤད་པ་', translation: 'expliqué, explication, exposer' },
+            { tibetan: 'དེ་ལྟར་', translation: 'ainsi, d\'après cela, comme cela' },
+            { tibetan: 'རྒྱལ་སྲས་རྣམས་', translation: 'les fils des vainqueurs' },
+            { tibetan: 'ཀྱི་', translation: 'particule : le génitif' },
+            { tibetan: 'སྤྱོད་པ་', translation: 's\'engager dans, utiliser, employer, appliquer' },
+            { tibetan: 'ལག་ལེན་', translation: 'pratiques' },
+            { tibetan: 'ལ་', translation: 'particule : l’oblique' },
+            { tibetan: 'སྤྲོ་', translation: 'joyeux, gaieté, être content, heureux' },
+            { tibetan: 'བཞིན་དུ་', translation: 'comme, semblable, similaire, avec' },
+            { tibetan: 'འཇུག་པ་', translation: 'engager dans, entrer' },
+            { tibetan: 'འི་', translation: 'particule : le génitif' },
+            { tibetan: 'བརྩོན་འགྲུས་', translation: 'diligence, courage' },
+            { tibetan: 'ཆེན་པོ་', translation: 'grand' },
+            { tibetan: 'སྒོ་ནས་', translation: 'à travers' },
+            { tibetan: 'འབད་པ་', translation: 'faire des efforts, s’efforcer' },
+            { tibetan: 'ས་', translation: 'particule : l’instrumental' },
+            { tibetan: 'བསླབ་', translation: 'entraîner, former, étudier' },
+            { tibetan: 'ཅིང་', translation: 'particule : connecteur' },
+            { tibetan: 'བསྒྲུབས་པའི་དགེ་བ་', translation: 'accomplir les vertus' },
+            { tibetan: 'གང་ཡིན་པ་', translation: 'constitue, celui qui, celui-là même' },
+            { tibetan: 'དེས་', translation: 'par cela' },
+            { tibetan: 'མཚོན་', translation: 'montrer, exposer' },
+            { tibetan: 'རང་གཞན་', translation: 'soi et les autres, tout le monde' },
+            { tibetan: 'ཡོངས་', translation: 'complètement' },
+            { tibetan: 'ཀྱིས་', translation: 'particule : l’instrumental' },
+            { tibetan: 'དུས་', translation: 'temps' },
+            { tibetan: 'གསུམ་', translation: 'trois' },
+            { tibetan: 'བསགས་པ་', translation: 'accumuler, rassembler, collecter' },
+            { tibetan: 'རྣམ་དཀར་', translation: 'vertueux, sain, très blanc' },
+            { tibetan: 'མ་ལུས་པ་', translation: 'sans exception, dans son intégralité' },
+            { tibetan: 'རྣམས་', translation: 'particule de pluralisation' },
+            { tibetan: 'མཐའ་ཡས་པ་', translation: 'infinité' },
+            { tibetan: 'འགྲོ་བ་', translation: 'les êtres' },
+            { tibetan: 'ཚོགས་', translation: 'assemblée, groupe, collection' },
+            { tibetan: 'ཀུན་', translation: 'tous' },
+            { tibetan: 'གྱི་', translation: 'particule : le génitif' },
+            { tibetan: 'སྡུག་བསྔལ་བསལ་བ་', translation: 'dissiper la souffrance' },
+            { tibetan: 'ར་', translation: 'particule' },
+            { tibetan: 'བྱ་བ་', translation: 'faire' },
+            { tibetan: 'ཕྱིར་དུ།', translation: 'afin de, pour l\'amour de' },
+            { tibetan: 'བསྔོ་བྱ་', translation: 'ce qui est à dédier [objet]' },
+            { tibetan: 'སྔོ་བྱེད་', translation: 'celui qui dédie [agent]' },
+            { tibetan: 'སྔོ་ཚུལ་', translation: 'manière de dédier [action]' },
+            { tibetan: 'འཁོར་གསུམ་', translation: 'les trois sphères' },
+            { tibetan: 'བདེན་འཛིན་', translation: 'tenir pour vrai, s\'accrocher' },
+            { tibetan: 'དྲི་མ་', translation: 'tâche, souillure, contamination' },
+            { tibetan: 'རྣམ་པར་དག་པ་', translation: 'complètement pur' },
+            { tibetan: 'བདེན་མེད་', translation: 'n\'existant pas réellement' },
+            { tibetan: 'རྟོགས་པ་', translation: 'réaliser, connaître, comprendre' },
+            { tibetan: 'ཤེས་རབ་', translation: 'sagesse' },
+            { tibetan: 'ཀྱིས་', translation: 'particule : l’instrumental' },
+            { tibetan: 'ཟིན་པ་', translation: 'saisir, tenir, compléter' },
+            { tibetan: 'གཞན་དོན་', translation: 'le bien d’autrui, altruisme' },
+            { tibetan: 'རྫོགས་པ་', translation: 'accomplir, terminer, parfaire' },
+            { tibetan: 'བྱང་ཆུབ་', translation: 'éveil, illumination, bodhi' },
+            { tibetan: 'རྒྱུ་', translation: 'cause' },
+            { tibetan: 'ནི་', translation: 'particule, emphase' },
+            { tibetan: 'དགེ་ཚོགས་', translation: 'les mérites rassemblés' },
+            { tibetan: 'ཆུད་མི་ཟ་', translation: 'ne pas gaspiller' },
+            { tibetan: 'ཞིང་', translation: 'particule, connecteur' },
+            { tibetan: 'གོང་ནས་གོང་དུ་', translation: 'de plus en plus, de mieux en mieux' },
+            { tibetan: 'ཐམས་ཅད་', translation: 'toutes' },
+            { tibetan: 'སྤེལ་བ་', translation: 's’accroître, propager' },
+            { tibetan: 'བྱེད་པ་', translation: 'faire' },
+            { tibetan: 'ཐབས་མཁས་', translation: 'moyens habiles' },
+            { tibetan: 'ཡིན་', translation: 'est' },
+            { tibetan: 'ནོ་', translation: 'particule finale' },
+            { tibetan: 'ཞེས་པ་', translation: '“...”' },
+            { tibetan: 'འོ།', translation: 'particule finale' }
+        ];
+
+        const textSequence = [
+            'ལྔ་པ་', 'དགེ་བ་', 'རྫོགས་བྱང་', 'དུ་', 'བསྔོ་བ་', 'ནི།', 'དོན་ནི།',
+            'སྔར་', 'བཤད་པ་', 'དེ་ལྟར་', 'རྒྱལ་སྲས་རྣམས་', 'ཀྱི་', 'སྤྱོད་པ་', 'ལག་ལེན་', 'ལ་', 'སྤྲོ་', 'བཞིན་དུ་', 'འཇུག་པ་', 'འི་', 'བརྩོན་འགྲུས་', 'ཆེན་པོ་', 'འི་', 'སྒོ་ནས་', 'འབད་པ་', 'ས་', 'བསླབ་', 'ཅིང་', 'བསྒྲུབས་པའི་དགེ་བ་', 'གང་ཡིན་པ་', 'དེས་', 'མཚོན་', 'རང་གཞན་', 'ཡོངས་', 'ཀྱིས་', 'དུས་', 'གསུམ་', 'བསགས་པ་', 'འི་', 'རྣམ་དཀར་', 'མ་ལུས་པ་', 'རྣམས་', 'མཐའ་ཡས་པ་', 'འི་', 'འགྲོ་བ་', 'འི་', 'ཚོགས་', 'ཀུན་', 'གྱི་', 'སྡུག་བསྔལ་བསལ་བ་', 'ར་', 'བྱ་བ་', 'འི་', 'ཕྱིར་དུ།',
+            'བསྔོ་བྱ་', 'སྔོ་བྱེད་', 'སྔོ་ཚུལ་', 'གྱི་', 'འཁོར་གསུམ་', 'ལ་', 'བདེན་འཛིན་', 'གྱི་', 'དྲི་མ་', 'རྣམ་པར་དག་པ་', 'འི་', 'བདེན་མེད་', 'རྟོགས་པ་', 'འི་', 'ཤེས་རབ་', 'ཀྱིས་', 'ཟིན་པ་', 'འི་', 'སྒོ་ནས་', 'གཞན་དོན་', 'དུ་', 'རྫོགས་པ་', 'འི་', 'བྱང་ཆུབ་', 'ཀྱི་', 'རྒྱུ་', 'ར་', 'བསྔོ་བ་', 'ནི་', 'རྒྱལ་སྲས་རྣམས་', 'ཀྱིས་', 'དགེ་ཚོགས་', 'ཆུད་མི་ཟ་', 'ཞིང་', 'གོང་ནས་གོང་དུ་', 'སྤེལ་བ་', 'ར་', 'བྱེད་པ་', 'འི་', 'ཐབས་མཁས་', 'ཀྱི་', 'ལག་ལེན་', 'ཡིན་', 'ནོ་', 'ཞེས་པ་', 'འོ།'
+        ];
+
+        const fullText = '༈ །ལྔ་པ་དགེ་བ་རྫོགས་བྱང་དུ་བསྔོ་བ་ནི། དོན་ནི། སྔར་བཤད་པ་དེ་ལྟར་རྒྱལ་སྲས་རྣམས་ཀྱི་སྤྱོད་པ་ལག་ལེན་ལ་སྤྲོ་བཞིན་དུ་འཇུག་པའི་བརྩོན་འགྲུས་ཆེན་པོའི་སྒོ་ནས་འབད་པས་བསླབ་ཅིང་བསྒྲུབས་པའི་དགེ་བ་གང་ཡིན་པ་དེས་མཚོན་རང་གཞན་ཡོངས་ཀྱིས་དུས་གསུམ་བསགས་པའི་རྣམ་དཀར་མ་ལུས་པ་རྣམས་མཐའ་ཡས་པའི་འགྲོ་བའི་ཚོགས་ཀུན་གྱི་སྡུག་བསྔལ་བསལ་བར་བྱ་བའི་ཕྱིར་དུ། བསྔོ་བྱ་སྔོ་བྱེད་སྔོ་ཚུལ་གྱི་འཁོར་གསུམ་ལ་བདེན་འཛིན་གྱི་དྲི་མ་རྣམ་པར་དག་པའི་བདེན་མེད་རྟོགས་པའི་ཤེས་རབ་ཀྱིས་ཟིན་པའི་སྒོ་ནས་གཞན་དོན་དུ་རྫོགས་པའི་བྱང་ཆུབ་ཀྱི་རྒྱུར་བསྔོ་བ་ནི་རྒྱལ་སྲས་རྣམས་ཀྱིས་དགེ་ཚོགས་ཆུད་མི་ཟ་ཞིང་གོང་ནས་གོང་དུ་སྤེལ་བར་བྱེད་པའི་ཐབས་མཁས་ཀྱི་ལག་ལེན་ཡིན་ནོ་ཞེས་པའོ།';
+
+        const vocabBody = document.getElementById('vocabBody');
+        const tibetanText = document.getElementById('tibetanText');
+        const vocabMap = new Map();
+
+        vocabulary.forEach((item, index) => {
+            vocabMap.set(item.tibetan, index);
+            const row = document.createElement('tr');
+            row.dataset.index = index;
+            row.innerHTML = `<td class="tibetan-term">${item.tibetan}</td><td>${item.translation}</td>`;
+            vocabBody.appendChild(row);
+        });
+
+        textSequence.forEach(word => {
+            const index = vocabMap.get(word);
+            const span = document.createElement('span');
+            if (index !== undefined) {
+                span.className = 'tibetan-word';
+                span.dataset.vocab = index;
+                span.onclick = () => highlightWord(index);
+            }
+            span.textContent = word;
+            tibetanText.appendChild(span);
+            tibetanText.appendChild(document.createTextNode(' '));
+        });
+
+        document.getElementById('tibetanTextFull').textContent = fullText;
+
+        function highlightWord(index) {
+            document.querySelectorAll('.tibetan-word').forEach(w => w.classList.remove('active'));
+            document.querySelectorAll('table tr').forEach(r => r.classList.remove('highlighted'));
+            document.querySelectorAll(`.tibetan-word[data-vocab="${index}"]`).forEach(s => s.classList.add('active'));
+
+            const row = document.querySelector(`tr[data-index="${index}"]`);
+            if (row) {
+                row.classList.add('highlighted');
+                row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                document.getElementById('stats').textContent = `📖 ${vocabulary[index].tibetan} → ${vocabulary[index].translation}`;
+            }
+        }
+
+        function toggleFrench(btn) {
+            const text = document.getElementById('french-text');
+            if (text.style.display === 'none') {
+                text.style.display = 'block';
+                btn.textContent = '📖 Masquer la traduction';
+            } else {
+                text.style.display = 'none';
+                btn.textContent = '📖 Afficher la traduction française';
+            }
+        }
+    </script>
+</body>
+</html>
