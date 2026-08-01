@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vingt-troisième pratique - Vocabulaire Interactif</title>
+    <style>
+        /* Charte graphique cohérente avec les pratiques précédentes */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px; min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 30px 0 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .back-button {
+            display: inline-block; background: rgba(255,255,255,0.2); color: white;
+            padding: 10px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9em;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+        }
+        .back-button:hover { background: rgba(255,255,255,0.3); transform: translateX(-3px); }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 30px; text-align: center;
+        }
+        .header h1 { font-size: 1.6em; margin-bottom: 5px; }
+        .header p { font-size: 0.95em; opacity: 0.9; }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+        @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
+        .section { padding: 20px; border-radius: 8px; background: #f8f9fa; }
+        .section h2 {
+            color: #667eea; margin-bottom: 15px; font-size: 1.2em;
+            border-bottom: 2px solid #667eea; padding-bottom: 10px;
+        }
+        .text-box {
+            background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
+            border-left: 4px solid #667eea; line-height: 2.2; word-break: break-word;
+        }
+        .tibetan-word {
+            cursor: pointer; padding: 2px 6px; border-radius: 4px;
+            transition: all 0.2s ease; display: inline-block; font-weight: 500;
+            color: #764ba2; background: #e8e0f5; margin: 2px; border: 1px solid #d0c4e8;
+        }
+        .tibetan-word:hover { background: #667eea; color: white; transform: scale(1.05); }
+        .tibetan-word.active { background: #667eea; color: white; box-shadow: 0 0 10px rgba(102,126,234,0.5); }
+        .vocabulary-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.9em; }
+        .vocabulary-table thead { background: #667eea; color: white; position: sticky; top: 0; }
+        .vocabulary-table th, .vocabulary-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .vocabulary-table tbody { display: block; max-height: 450px; overflow-y: auto; }
+        .vocabulary-table thead, .vocabulary-table tr { display: table; width: 100%; table-layout: fixed; }
+        .vocabulary-table tr.highlighted { background-color: #e3f2fd !important; border-left: 4px solid #667eea; }
+        .tibetan-term { color: #764ba2; font-weight: 600; }
+        .stats { background: #e8e0f5; padding: 12px; border-radius: 6px; margin-top: 15px; color: #764ba2; font-weight: 500; }
+        .toggle-btn {
+            background: #667eea; color: white; border: none; padding: 15px;
+            border-radius: 5px; cursor: pointer; font-size: 1em; width: 100%; font-weight: bold;
+        }
+        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: #667eea; }
+        #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: #764ba2; font-weight: 600; }
+        .toggle-btn:hover { background: #764ba2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <a href="index.html" class="back-button">← Retour à l'accueil</a>
+        </div>
+        <div class="header">
+            <h1>Se défaire des objets perçus suscitant l’attachement</h1>
+            <p>Vingt-troisième pratique - Vocabulaire Interactif</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Texte Tibétain Interactif</h2>
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #764ba2; font-size: 0.85em; border-left: 4px solid #667eea;">
+                    💡 Cliquez sur les segments pour voir la traduction
+                </div>
+                <div class="text-box" id="tibetanText"></div>
+                <div id="stats" class="stats">Cliquez sur un mot...</div>
+            </div>
+            <div class="section">
+                <h2>Vocabulaire</h2>
+                <table class="vocabulary-table">
+                    <thead><tr><th style="width:40%;">Terme</th><th style="width:60%;">Traduction</th></tr></thead>
+                    <tbody id="vocabBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Texte Tibétain Complet</h2>
+                <div class="text-box" id="tibetanTextFull" style="font-size: 1.1em;"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" style="grid-column: 1 / -1;">
+                <h2>Traduction Française</h2>
+                <button class="toggle-btn" onclick="toggleFrench(this)">📖 Afficher la traduction française</button>
+                <div id="french-text" class="text-box" style="display: none; margin-top: 15px;">
+                    <h3>Vingt-troisième pratique : Ne pas saisir les manifestations de phénomènes plaisants</h3>
+                    <p>En deux points : Se défaire de l’attachement à la réification des objets perçus suscitant l’attachement ou l’aversion. Se défaire des objets perçus suscitant l’attachement. Se défaire des objets perçus suscitant l’aversion. Premier point :</p>
+                    </p>
+                    <h4>Le sens :</h4>
+                    <p>    
+                        Les objets plaisants que nous rencontrons par exemple les belles formes, les mélodies, le bonheur et le bien-être, la paix et le confort, les rencontres... sont exactement comme l’apparition d’un brillant et bel arc-en-ciel un jour d’été.</p>
+                    <p>Nous comprenons avec précision que ces manifestations, si agréables soient-elles, n’ont pas de réalité propre. Il en est de même pour les amis qui sont agréables et les compagnies plaisantes. Nous abandonnons toutes saisies et tout attachement en la croyance en une existence établie comme étant réelle.</p>
+                    <p>« Cette manière de cesser la saisie d’une existence réelle aux objets d'attachement est l’une des [37] pratiques des Fils des Vainqueurs ».</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const vocabulary = [
+            { tibetan: '།གཉིས་པ་', translation: 'en deux [parties]' },
+            { tibetan: 'རྗེས་ཐོབ་', translation: 'en post-méditation' },
+            { tibetan: 'ཏུ་', translation: 'particule oblique : datif' },
+            { tibetan: 'ཆགས་སྡང་གི་ཡུལ་', translation: 'objet d’attachement et d’aversion' },
+            { tibetan: 'ལ་', translation: 'particule oblique' },
+            { tibetan: 'བདེན་ཞེན་', translation: 'saisie' },
+            { tibetan: 'སྤང་བ་', translation: 'abandonner' },
+            { tibetan: 'འོ།', translation: 'particule finale' },
+            { tibetan: 'ལ་གཉིས།', translation: '[les] deux [partie sont]' },
+            { tibetan: 'ཆགས་ཡུལ་', translation: 'objet d\'attachement' },
+            { tibetan: 'སྤང་བ།', translation: 'abandonner (avec ponctuation)' },
+            { tibetan: 'སྡང་ཡུལ་', translation: 'objet d\'aversion' },
+            { tibetan: '།དང་པོ་', translation: 'en premier' },
+            { tibetan: 'ནི།', translation: 'particule : thématiseur' },
+            { tibetan: 'དོན་ནི།', translation: 'le sens' },
+            { tibetan: 'ཡིད་དུ་འོང་བ་', translation: 'agréable, plaisant, séduisant' },
+            { tibetan: 'འི་', translation: 'particule : le génitif' },
+            { tibetan: 'ཡུལ་', translation: 'objet' },
+            { tibetan: 'རང་གི་', translation: 'propre' },
+            { tibetan: 'གཉེན་གྲོགས་', translation: 'ami, se faire des amis' },
+            { tibetan: 'སོགས་', translation: 'etc.' },
+            { tibetan: 'དང་', translation: 'particule : connecteur' },
+            { tibetan: 'གཟུགས་མཛེས་', translation: 'forme belle, agréable' },
+            { tibetan: 'སྒྲ་སྙན་', translation: 'son agréable, mélodique' },
+            { tibetan: 'བདེ་སྐྱིད', translation: 'bonheur et bien-être' },
+            { tibetan: 'བདེ་སྐྱིད་ཅན་', translation: 'paix et le confort' },
+            { tibetan: 'དང་ཕྲད་པ་', translation: 'rencontré' },
+            { tibetan: 'ན་', translation: 'particule oblique' },
+            { tibetan: 'དབྱར་གྱི་དུས་', translation: 'saison d’été' },
+            { tibetan: 'ཀྱི་', translation: 'particule : le génitif' },
+            { tibetan: 'འཇའ་ཚོན་', translation: 'arc-en-ciel' },
+            { tibetan: 'མཛེས་', translation: 'beau, séduisant' },
+            { tibetan: 'ཤིང་', translation: 'particule : connecteur' },
+            { tibetan: 'བཀྲ་བ་', translation: 'vif, brillant, beau' },
+            { tibetan: 'ར་', translation: 'particule oblique' },
+            { tibetan: 'སྣང་', translation: 'se manifester' },
+            { tibetan: 'ཡང་།', translation: 'même si' },
+            { tibetan: 'སྣང་བ་', translation: 'manifestation' },
+            { tibetan: 'ལྟར་', translation: 'comme, conformément à' },
+            { tibetan: 'མ་གྲུབ་པ་', translation: '(nature propre) non établie' },
+            { tibetan: 'ཇི་ལྟ་བ་', translation: 'ainsité, phénomènes tels qu\'ils sont' },
+            { tibetan: 'བཞིན་དུ།', translation: 'comme, semblable' },
+            { tibetan: 'ཡིད་དུ་འོང་', translation: 'agréable, plaisant' },
+            { tibetan: 'ཞིང་', translation: 'particule : connecteur' },
+            { tibetan: 'མཛེས་པར་སྣང་བ་', translation: 'manifestation agréable, belle' },
+            { tibetan: 'གང་ལ་', translation: 'envers quoi que ce soit' },
+            { tibetan: 'ཡང་', translation: 'même si' },
+            { tibetan: 'བདེན་པར་', translation: 'vraiment' },
+            { tibetan: 'མི་འཛིན་པར་', translation: 'ne pas considérer comme' },
+            { tibetan: 'བདེན་མེད་', translation: 'absence de réalité' },
+            { tibetan: 'དུ་', translation: 'particule oblique' },
+            { tibetan: 'ལྟ་', translation: 'regarder' },
+            { tibetan: 'ཞིང་།', translation: 'particule : connecteur' },
+            { tibetan: 'འདི་', translation: 'ces' },
+            { tibetan: 'ནི་', translation: 'particule emphatique' },
+            { tibetan: 'གཉེན་', translation: 'ami' },
+            { tibetan: 'གྲོགས་པོ།', translation: 'compagnon' },
+            { tibetan: 'སྡུག་པ་', translation: 'tristesse / ce qui est cher (ici cher)' },
+            { tibetan: 'སྙམ་དུ་', translation: 'pensant, avec la pensée de' },
+            { tibetan: 'རང་ངོས་', translation: 'propre côté' },
+            { tibetan: 'ནས་', translation: 'particule : l’ablatif' },
+            { tibetan: 'བདེན་གྲུབ་', translation: 'existence réelle' },
+            { tibetan: 'ཏུ་', translation: 'particule oblique' },
+            { tibetan: 'འཛིན་པ་', translation: 'saisir, concevoir' },
+            { tibetan: 'བདེན་', translation: 'vérité' },
+            { tibetan: 'ཞེན་དང་ཆགས་པ་', translation: 'saisie et attachement' },
+            { tibetan: 'སྤོང་བ་', translation: 'abandonner' },
+            { tibetan: 'རྒྱལ་སྲས་རྣམས་', translation: 'fils des vainqueurs' },
+            { tibetan: 'ཀྱིས་', translation: 'particule : l’ergatif' },
+            { tibetan: 'འགོག་', translation: 'cesser, arrêter' },
+            { tibetan: 'ཚུལ་', translation: 'manière, système' },
+            { tibetan: 'གྱི་', translation: 'particule : le génitif' },
+            { tibetan: 'ལག་ལེན་', translation: 'pratique' },
+            { tibetan: 'ཡིན་', translation: 'est' },
+            { tibetan: 'ནོ་', translation: 'particule finale' },
+            { tibetan: 'ཞེས་པ་', translation: 'ainsi (citation)' }
+        ];
+
+        const textSequence = [
+            '།གཉིས་པ་', 'རྗེས་ཐོབ་', 'ཏུ་', 'ཆགས་སྡང་གི་ཡུལ་', 'ལ་', 'བདེན་ཞེན་', 'སྤང་བ་', 'འོ།',
+            'ལ་གཉིས།', 'ཆགས་ཡུལ་', 'ལ་', 'བདེན་ཞེན་', 'སྤང་བ།', 'སྡང་ཡུལ་', 'ལ་', 'བདེན་ཞེན་', 'སྤང་བ་', 'འོ།',
+            '།དང་པོ་', 'ནི།', 'དོན་ནི།', 'ཡིད་དུ་འོང་བ་', 'འི་', 'ཡུལ་', 'རང་གི་', 'གཉེན་གྲོགས་', 'སོགས་', 'དང་', 
+            'གཟུགས་མཛེས་', 'སྒྲ་སྙན་', 'སོགས་', 'དང་', 'བདེ་སྐྱིད', 'དང་', 'བདེ་སྐྱིད་ཅན་', 'སོགས་', 'དང་ཕྲད་པ་', 'ན་', 
+            'དབྱར་གྱི་དུས་', 'ཀྱི་', 'འཇའ་ཚོན་', 'མཛེས་', 'ཤིང་', 'བཀྲ་བ་', 'ར་', 'སྣང་', 'ཡང་།', 'སྣང་བ་', 'ལྟར་', 
+            'མ་གྲུབ་པ་', 'ཇི་ལྟ་བ་', 'བཞིན་དུ།', 'ཡིད་དུ་འོང་', 'ཞིང་', 'མཛེས་པར་སྣང་བ་', 'གང་ལ་', 'ཡང་', 'བདེན་པར་', 
+            'མི་འཛིན་པར་', 'བདེན་མེད་', 'དུ་', 'ལྟ་', 'ཞིང་།', 'འདི་', 'ནི་', 'གཉེན་', 'དང་', 'གྲོགས་པོ།', 'མཛེས་', 
+            'ཤིང་', 'སྡུག་པ་', 'འོ།', 'སྙམ་དུ་', 'རང་ངོས་', 'ནས་', 'བདེན་གྲུབ་', 'ཏུ་', 'འཛིན་པ་', 'འི་', 'བདེན་', 
+            'ཞེན་དང་ཆགས་པ་', 'སྤོང་བ་', 'ནི་', 'རྒྱལ་སྲས་རྣམས་', 'ཀྱིས་', 'ཆགས་ཡུལ་', 'ལ་', 'བདེན་ཞེན་', 'འགོག་', 
+            'ཚུལ་', 'གྱི་', 'ལག་ལེན་', 'ཡིན་', 'ནོ་', 'ཞེས་པ་', 'འོ།'
+        ];
+
+        const fullText = 'གཉསི་པ་༼རྗེས་ཐོབ་ཏུ་ཆགས་སྡང་གི་ཡུལ་ལ་བདེན་ཞེན་སྤང་བའོ།༽། ཆགས་ཡུལ་ལ་བདེན་ཞེན་སྤང་བ། །སྡང་ཡུལ་ལ་བདེན་ཞེན་སྤང་བའོ། དང་པོ་ནི། དོན་ནི། ཡིད་དུ་འོང་བའི་ཡུལ་རང་གི་གཉེན་གྲོགས་སོགས་དང་། གཟུགས་མཛེས་སྒྲ་སྙན་སོགས་དང་། བདེ་སྐྱིད་དང་བདེ་སྐྱིད་ཅན་སོགས་དང་ཕྲད་པ་ན་དབྱར་གྱི་དུས་ཀྱི་འཇའ་ཚོན་མཛེས་ཤིང་བཀྲ་བར་སྣང་ཡང་། སྣང་བ་ལྟར་མ་གྲུབ་པ་ཇི་ལྟ་བ་བཞིན་དུ། ཡིད་དུ་འོང་ཞིང་མཛེས་པར་སྣང་བ་གང་ལ་ཡང་བདེན་པར་མི་འཛིན་པར་བདེན་མེད་དུ་ལྟ་ཞིང་། འདི་ནི་གཉེན་དང་གྲོགས་པོ། མཛེས་ཤིང་སྡུག་པའོ་སྙམ་དུ་རང་ངོས་ནས་བདེན་གྲུབ་ཏུ་འཛིན་པའི་བདེན་ཞེན་དང་ཆགས་པ་སྤོང་བ་ནི་རྒྱལ་སྲས་རྣམས་ཀྱིས་ཆགས་ཡུལ་ལ་བདེན་ཞེན་འགོག་ཚུལ་གྱི་ལག་ལེན་ཡིན་ནོ་ཞེས་པའོ།';
+
+        const vocabBody = document.getElementById('vocabBody');
+        const tibetanText = document.getElementById('tibetanText');
+        const vocabMap = new Map();
+
+        vocabulary.forEach((item, index) => {
+            vocabMap.set(item.tibetan, index);
+            const row = document.createElement('tr');
+            row.dataset.index = index;
+            row.innerHTML = `<td class="tibetan-term">${item.tibetan}</td><td>${item.translation}</td>`;
+            vocabBody.appendChild(row);
+        });
+
+        textSequence.forEach(word => {
+            const index = vocabMap.get(word);
+            const span = document.createElement('span');
+            if (index !== undefined) {
+                span.className = 'tibetan-word';
+                span.dataset.vocab = index;
+                span.onclick = () => highlightWord(index);
+            }
+            span.textContent = word;
+            tibetanText.appendChild(span);
+            tibetanText.appendChild(document.createTextNode(' '));
+        });
+
+        document.getElementById('tibetanTextFull').textContent = fullText;
+
+        function highlightWord(index) {
+            document.querySelectorAll('.tibetan-word').forEach(w => w.classList.remove('active'));
+            document.querySelectorAll('table tr').forEach(r => r.classList.remove('highlighted'));
+            document.querySelectorAll(`.tibetan-word[data-vocab="${index}"]`).forEach(s => s.classList.add('active'));
+            const row = document.querySelector(`tr[data-index="${index}"]`);
+            if (row) {
+                row.classList.add('highlighted');
+                row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                document.getElementById('stats').textContent = `📖 ${vocabulary[index].tibetan} → ${vocabulary[index].translation}`;
+            }
+        }
+
+        function toggleFrench(btn) {
+            const text = document.getElementById('french-text');
+            text.style.display = (text.style.display === 'none') ? 'block' : 'none';
+            btn.textContent = (text.style.display === 'none') ? '📖 Afficher la traduction' : '📖 Masquer la traduction';
+        }
+    </script>
+</body>
+</html>
