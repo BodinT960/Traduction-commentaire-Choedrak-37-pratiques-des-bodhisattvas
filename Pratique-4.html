@@ -12,23 +12,24 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f5dc 0%, #fffaf0 100%);
             padding: 20px;
             min-height: 100vh;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8b7355 0%, #5a4a42 100%);
             color: white;
             padding: 30px;
             text-align: center;
@@ -39,7 +40,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 20px 30px 0 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8b7355 0%, #5a4a42 100%);
         }
 
         .back-button {
@@ -63,11 +64,14 @@
         
         .header h1 {
             font-size: 1.8em;
+            font-weight: normal;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
-        
+
         .header p {
             font-size: 0.95em;
+            font-style: italic;
             opacity: 0.9;
         }
         
@@ -87,14 +91,14 @@
         .section {
             padding: 20px;
             border-radius: 8px;
-            background: #f8f9fa;
+            background: #faf8f3;
         }
         
         .section h2 {
-            color: #667eea;
+            color: #5a4a42;
             margin-bottom: 15px;
             font-size: 1.2em;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #8b7355;
             padding-bottom: 10px;
         }
         
@@ -103,7 +107,7 @@
             padding: 20px;
             border-radius: 6px;
             margin-bottom: 15px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #8b7355;
             line-height: 2.2;
             word-break: break-word;
         }
@@ -113,7 +117,7 @@
             padding: 20px;
             border-radius: 6px;
             margin-bottom: 15px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #8b7355;
             line-height: 2.2;
             word-break: break-word;
             font-size: 0.95em;
@@ -127,25 +131,25 @@
             transition: all 0.2s ease;
             display: inline-block;
             font-weight: 500;
-            color: #764ba2;
-            background: #e8e0f5;
+            color: #5a4a42;
+            background: #f0ebe5;
             margin: 2px 2px;
-            border: 1px solid #d0c4e8;
+            border: 1px solid #d4c4b0;
         }
         
         .tibetan-word:hover {
-            background: #667eea;
+            background: #8b7355;
             color: white;
             transform: scale(1.08);
-            border-color: #667eea;
-            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+            border-color: #8b7355;
+            box-shadow: 0 2px 6px rgba(139, 115, 85, 0.4);
         }
         
         .tibetan-word.active {
-            background: #667eea;
+            background: #8b7355;
             color: white;
-            box-shadow: 0 0 12px rgba(102, 126, 234, 0.8);
-            border-color: #667eea;
+            box-shadow: 0 0 12px rgba(139, 115, 85, 0.8);
+            border-color: #8b7355;
         }
         
         .vocabulary-table {
@@ -156,7 +160,7 @@
         }
         
         .vocabulary-table thead {
-            background: #667eea;
+            background: #8b7355;
             color: white;
         }
         
@@ -194,12 +198,12 @@
         
         .vocabulary-table tbody tr.highlighted {
             background-color: #fff3cd !important;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #8b7355;
             padding-left: 8px;
         }
         
         .tibetan-term {
-            color: #764ba2;
+            color: #5a4a42;
             font-weight: 600;
             width: 40%;
         }
@@ -210,18 +214,18 @@
         }
         
         .stats {
-            background: #e8e0f5;
+            background: #f0ebe5;
             padding: 12px;
             border-radius: 6px;
             margin-top: 15px;
-            color: #667eea;
+            color: #5a4a42;
             font-weight: 500;
             font-size: 0.9em;
             min-height: 20px;
         }
         
         .toggle-btn {
-            background: #667eea;
+            background: #8b7355;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -233,7 +237,7 @@
         }
         
         .toggle-btn:hover {
-            background: #764ba2;
+            background: #5a4a42;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -245,13 +249,13 @@
         #french-text h3 {
             font-size: 1.1em;
             margin: 0 0 15px 0;
-            color: #667eea;
+            color: #5a4a42;
         }
         
         #french-text h4 {
             font-size: 1em;
             margin: 15px 0 10px 0;
-            color: #764ba2;
+            color: #5a4a42;
             font-weight: 600;
         }
         
@@ -277,7 +281,7 @@
         <div class="content">
             <div class="section">
                 <h2>Texte Tibétain</h2>
-                <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #667eea; font-size: 0.9em; border-left: 4px solid #667eea;">
+                <div style="background: #faf8f3; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #5a4a42; font-size: 0.9em; border-left: 4px solid #8b7355;">
                     💡 Cliquez sur les mots tibétains pour voir leur traduction
                 </div>
                 <div class="text-box" id="tibetanText"></div>
@@ -310,9 +314,9 @@
                 <h2>Traduction Française</h2>
                 <button class="toggle-btn" onclick="toggleFrench()" style="width: 100%; margin-top: 0;">📖 Afficher la traduction</button>
                 <div id="french-text" class="text-box" style="display: none; margin-top: 10px;">
-                    <h3 style="color: #667eea; margin-top: 0; margin-bottom: 15px;">Quatrième pratique : S'en remettre à l'impermanence</h3>
+                    <h3 style="color: #5a4a42; margin-top: 0; margin-bottom: 15px;">Quatrième pratique : S'en remettre à l'impermanence</h3>
                     
-                    <h4 style="color: #764ba2; margin-top: 15px; margin-bottom: 10px;">Le sens :</h4>
+                    <h4 style="color: #5a4a42; margin-top: 15px; margin-bottom: 10px;">Le sens :</h4>
                     <p style="line-height: 1.8; color: #333; margin: 0 0 15px 0;">
                         Il est certain que nous devrons peu à peu nous séparer de nos parents, de nos compagnons ou de nos amis avec qui nous avons partagé une longue  période de vie ou toute notre existence. De même, il est sûr que nous allons les quitter au moment de la mort. Il en est de même pour toutes les richesses acquises au prix d'un grand effort à travers de grandes difficultés et avec une grande frayeur à l'idée de tout perdre. De plus, lorsque notre vie s'éteint, ces acquisitions ne nous suivent pas et elles seront toutes peu à peu distribuées. Nous n'emporterons rien.
                     </p>
