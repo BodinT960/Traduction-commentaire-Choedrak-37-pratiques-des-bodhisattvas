@@ -8,18 +8,19 @@
         /* Charte graphique cohérente avec les pratiques précédentes */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f5dc 0%, #fffaf0 100%);
             padding: 20px; min-height: 100vh;
         }
         .container {
             max-width: 1200px; margin: 0 auto; background: white;
-            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;
+            border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;
         }
         .header-top {
             display: flex; align-items: center; justify-content: space-between;
             padding: 20px 30px 0 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8b7355 0%, #5a4a42 100%);
         }
         .back-button {
             display: inline-block; background: rgba(255,255,255,0.2); color: white;
@@ -28,44 +29,44 @@
         }
         .back-button:hover { background: rgba(255,255,255,0.3); transform: translateX(-3px); }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8b7355 0%, #5a4a42 100%);
             color: white; padding: 30px; text-align: center;
         }
-        .header h1 { font-size: 1.6em; margin-bottom: 5px; }
-        .header p { font-size: 0.95em; opacity: 0.9; }
+        .header h1 { font-size: 1.6em; font-weight: normal; letter-spacing: 1px; margin-bottom: 5px; }
+        .header p { font-size: 0.95em; font-style: italic; opacity: 0.9; }
         .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
         @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
-        .section { padding: 20px; border-radius: 8px; background: #f8f9fa; }
+        .section { padding: 20px; border-radius: 8px; background: #faf8f3; }
         .section h2 {
-            color: #667eea; margin-bottom: 15px; font-size: 1.2em;
-            border-bottom: 2px solid #667eea; padding-bottom: 10px;
+            color: #5a4a42; margin-bottom: 15px; font-size: 1.2em; font-weight: normal;
+            border-bottom: 2px solid #8b7355; padding-bottom: 10px;
         }
         .text-box {
             background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px;
-            border-left: 4px solid #667eea; line-height: 2.2; word-break: break-word;
+            border-left: 4px solid #8b7355; line-height: 2.2; word-break: break-word;
         }
         .tibetan-word {
             cursor: pointer; padding: 2px 6px; border-radius: 4px;
             transition: all 0.2s ease; display: inline-block; font-weight: 500;
-            color: #764ba2; background: #e8e0f5; margin: 2px; border: 1px solid #d0c4e8;
+            color: #5a4a42; background: #f0ebe5; margin: 2px; border: 1px solid #d4c4b0;
         }
-        .tibetan-word:hover { background: #667eea; color: white; transform: scale(1.05); }
-        .tibetan-word.active { background: #667eea; color: white; box-shadow: 0 0 10px rgba(102,126,234,0.5); }
+        .tibetan-word:hover { background: #8b7355; color: white; transform: scale(1.05); }
+        .tibetan-word.active { background: #8b7355; color: white; box-shadow: 0 0 10px rgba(139,115,85,0.5); }
         .vocabulary-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.9em; }
-        .vocabulary-table thead { background: #667eea; color: white; position: sticky; top: 0; }
+        .vocabulary-table thead { background: #8b7355; color: white; position: sticky; top: 0; }
         .vocabulary-table th, .vocabulary-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
         .vocabulary-table tbody { display: block; max-height: 450px; overflow-y: auto; }
         .vocabulary-table thead, .vocabulary-table tr { display: table; width: 100%; table-layout: fixed; }
-        .vocabulary-table tr.highlighted { background-color: #e3f2fd !important; border-left: 4px solid #667eea; }
-        .tibetan-term { color: #764ba2; font-weight: 600; }
-        .stats { background: #e8e0f5; padding: 12px; border-radius: 6px; margin-top: 15px; color: #764ba2; font-weight: 500; }
+        .vocabulary-table tr.highlighted { background-color: #fff3cd !important; border-left: 4px solid #8b7355; }
+        .tibetan-term { color: #5a4a42; font-weight: 600; }
+        .stats { background: #f0ebe5; padding: 12px; border-radius: 6px; margin-top: 15px; color: #5a4a42; font-weight: 500; }
         .toggle-btn {
-            background: #667eea; color: white; border: none; padding: 15px;
+            background: #8b7355; color: white; border: none; padding: 15px;
             border-radius: 5px; cursor: pointer; font-size: 1em; width: 100%; font-weight: bold;
         }
-        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: #667eea; }
-        #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: #764ba2; font-weight: 600; }
-        .toggle-btn:hover { background: #764ba2; }
+        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: #5a4a42; }
+        #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: #5a4a42; font-weight: 600; }
+        .toggle-btn:hover { background: #5a4a42; }
     </style>
 </head>
 <body>
@@ -81,7 +82,7 @@
         <div class="content">
             <div class="section">
                 <h2>Texte Tibétain Interactif</h2>
-                <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #764ba2; font-size: 0.85em; border-left: 4px solid #667eea;">
+                <div style="background: #faf8f3; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #5a4a42; font-size: 0.85em; border-left: 4px solid #8b7355;">
                     💡 Cliquez sur les segments pour voir la traduction
                 </div>
                 <div class="text-box" id="tibetanText"></div>
@@ -112,9 +113,9 @@
                     <p>En deux points : Se défaire de l’attachement à la réification des objets perçus suscitant l’attachement ou l’aversion. Se défaire des objets perçus suscitant l’attachement. Se défaire des objets perçus suscitant l’aversion. Premier point :</p>
                     </p>
                     <h4>Le sens :</h4>
-                    <p>    
-                        Les objets plaisants qui se présentent à nous, par exemple les belles formes, les mélodies, le bonheur et le bien-être, la paix et le confort, les rencontres... sont exactement comme l’apparition d’un brillant et bel arc-en-ciel un jour d’été.</p>
-                    <p>Nous comprenons avec précision que ces manifestations, si agréables soient-elles, n’ont pas de réalité propre. Il en est de même pour les amis qui sont agréables et les compagnies plaisantes. Nous abandonnons toutes saisies et tout attachement en la croyance en une existence établie comme étant réelle.</p>
+                    <p>
+                        Les objets plaisants qui se présentent à nous, par exemple nos proches et nos amis, les belles formes, les sons mélodieux, le bonheur et les êtres heureux,… sont exactement comme l'apparition d'un brillant et bel arc-en-ciel un jour d'été. Nous comprenons avec précision que ces manifestations, si agréables soient-elles, n'ont pas de réalité propre. Il en est de même pour les amis qui sont agréables et les compagnies plaisantes.</p>
+                    <p>Nous abandonnons toutes saisies et tout attachement en la croyance en une existence établie comme étant réelle.</p>
                     <p>« Cette manière de cesser la saisie d’une existence réelle aux objets d'attachement est l’une des [37] pratiques des Fils des Vainqueurs ».</p>
                 </div>
             </div>
