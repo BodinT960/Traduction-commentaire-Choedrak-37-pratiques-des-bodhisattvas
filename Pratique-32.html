@@ -6,19 +6,20 @@
     <title>Trente-deuxième pratique - Vocabulaire Interactif</title>
     <style>
         :root {
-            --primary: #0891b2;
-            --primary-dark: #155e75;
-            --bg-gradient: linear-gradient(135deg, #0e7490 0%, #10b981 100%);
+            --primary: #8b7355;
+            --primary-dark: #5a4a42;
+            --bg-gradient: linear-gradient(135deg, #8b7355 0%, #5a4a42 100%);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-gradient);
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f5dc 0%, #fffaf0 100%);
             padding: 20px; min-height: 100vh;
         }
         .container {
             max-width: 1200px; margin: 0 auto; background: white;
-            border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;
+            border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;
         }
         .header-top {
             display: flex; align-items: center; justify-content: space-between;
@@ -31,13 +32,13 @@
         }
         .back-button:hover { background: rgba(255,255,255,0.3); transform: translateX(-3px); }
         .header { background: var(--bg-gradient); color: white; padding: 30px; text-align: center; }
-        .header h1 { font-size: 1.8em; margin-bottom: 5px; }
-        .header p { font-size: 0.95em; opacity: 0.9; }
+        .header h1 { font-size: 1.8em; font-weight: normal; letter-spacing: 1px; margin-bottom: 5px; }
+        .header p { font-size: 0.95em; font-style: italic; opacity: 0.9; }
         .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
         @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
-        .section { padding: 20px; border-radius: 8px; background: #f0fdfa; }
+        .section { padding: 20px; border-radius: 8px; background: #faf8f3; }
         .section h2 {
-            color: var(--primary-dark); margin-bottom: 15px; font-size: 1.2em;
+            color: var(--primary-dark); margin-bottom: 15px; font-size: 1.2em; font-weight: normal;
             border-bottom: 2px solid var(--primary); padding-bottom: 10px;
         }
         .text-box {
@@ -52,20 +53,20 @@
         .tibetan-word {
             cursor: pointer; padding: 4px 8px; border-radius: 4px;
             transition: all 0.2s ease; display: inline-block; font-weight: 500;
-            color: var(--primary-dark); background: #ecfeff; margin: 2px 2px; border: 1px solid #cffafe;
+            color: var(--primary-dark); background: #f0ebe5; margin: 2px 2px; border: 1px solid #d4c4b0;
         }
         .tibetan-word:hover { background: var(--primary); color: white; transform: scale(1.08); }
-        .tibetan-word.active { background: var(--primary-dark); color: white; box-shadow: 0 0 12px rgba(8,145,178,0.5); }
+        .tibetan-word.active { background: var(--primary-dark); color: white; box-shadow: 0 0 12px rgba(139,115,85,0.5); }
         .vocabulary-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95em; }
         .vocabulary-table thead { background: var(--primary); color: white; display: table; width: 100%; table-layout: fixed; }
         .vocabulary-table tbody { max-height: 500px; overflow-y: auto; display: block; width: 100%; }
         .vocabulary-table tr { display: table; width: 100%; table-layout: fixed; }
         .vocabulary-table th { padding: 12px; text-align: left; font-weight: 600; }
         .vocabulary-table td { padding: 10px 12px; border-bottom: 1px solid #ddd; }
-        .vocabulary-table tr.highlighted { background-color: #cffafe !important; border-left: 4px solid var(--primary); }
+        .vocabulary-table tr.highlighted { background-color: #fff3cd !important; border-left: 4px solid var(--primary); }
         .tibetan-term { color: var(--primary-dark); font-weight: 600; width: 40%; }
         .stats {
-            background: #cffafe; padding: 12px; border-radius: 6px; margin-top: 15px;
+            background: #f0ebe5; padding: 12px; border-radius: 6px; margin-top: 15px;
             color: var(--primary-dark); font-weight: 500; min-height: 45px;
         }
         .toggle-btn {
@@ -92,7 +93,7 @@
         <div class="content">
             <div class="section">
                 <h2>Texte Tibétain Interactif</h2>
-                <div style="background: #e0f2fe; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #0369a1; font-size: 0.9em; border-left: 4px solid var(--primary);">
+                <div style="background: #faf8f3; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #5a4a42; font-size: 0.9em; border-left: 4px solid #8b7355;">
                     💡 Cliquez sur les mots tibétains pour voir leur traduction
                 </div>
                 <div class="text-box" id="tibetanText"></div>
