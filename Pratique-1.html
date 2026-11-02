@@ -191,14 +191,14 @@
         }
 
         .tibetan-term {
-            font-weight: 600;
             color: #5a4a42;
-            font-size: 1.05em;
-            min-width: 120px;
+            font-weight: 600;
+            width: 40%;
         }
         
         .translation {
             color: #333;
+            width: 60%;
         }
         
         .instruction {
@@ -275,6 +275,25 @@
         .toggle-btn:active {
             transform: translateY(0);
         }
+        #translation-display h3 {
+            font-size: 1.1em;
+            margin: 0 0 15px 0;
+            color: #5a4a42;
+        }
+
+        #translation-display h4 {
+            font-size: 1em;
+            margin: 15px 0 10px 0;
+            color: #5a4a42;
+            font-weight: 600;
+        }
+
+        #translation-display p {
+            font-size: 0.95em;
+            line-height: 1.8;
+            color: #333;
+            margin: 0 0 15px 0;
+        }
     </style>
 </head>
 <body>
@@ -302,8 +321,8 @@
                 <table class="vocabulary-table" id="vocabularyTable">
                     <thead>
                         <tr>
-                            <th style="width: 40%;">Tibétain</th>
-                            <th style="width: 60%;">Traduction</th>
+                            <th>Tibétain</th>
+                            <th>Traduction</th>
                         </tr>
                     </thead>
                     <tbody id="vocabBody"></tbody>
@@ -325,16 +344,21 @@
             <div class="section" style="grid-column: 1 / -1;">
                 <h2>Traduction Française</h2>
                 <button class="toggle-btn" onclick="toggleTranslation(event)" style="width: 100%; margin-top: 0;">📖 Afficher la traduction</button>
-                <div id="translation-display" style="display: none; background: white; padding: 20px; border-radius: 6px; margin-top: 10px; border-left: 4px solid #8b7355; line-height: 1.8; color: #333; font-size: 0.98em;">
-                    <strong>Première pratique :</strong> La difficulté d'obtenir une existence humaine pleine de sens dotée des libertés et des richesses
-                    <br><br>
-                    Les deux sujets principaux sont la façon de s'engager dans les pratiques préliminaires du Dharma et l'enseignement sur le chemin des trois types d'individus. De la première à la septième pratique.
-                    <br><br>
-                    <strong>Le sens :</strong>
-                    <br><br>
-                    Pourvu des huit libertés, qui consistent à ne pas être né dans les huit états d'entrave, et des dix richesses au complet — les cinq richesses personnelles, conditions favorables à la pratique du Dharma réunies de notre propre côté, et les cinq richesses extérieures, réunies du côté d'autrui —, ce support corporel, pareil à un grand navire, est difficile à obtenir, comme le montrent les trois considérations de l'exemple, du nombre et de la cause ; et, une fois obtenu, il permet d'accomplir le grand but que l'on poursuit, quel qu'il soit : la libération ou l'omniscience. Maintenant que nous l'avons obtenu, au lieu de le gaspiller en choses vaines ou de peu de portée, et afin de délivrer du grand océan du saṃsāra nous-mêmes et tous les autres, à tout moment, de jour comme de nuit, sans le moindre relâchement et sans interruption, écouter les instructions profondes auprès d'un ami spirituel du Grand Véhicule, examiner leur sens et y réfléchir au moyen des quatre types de raisonnement, puis méditer en y appliquant correctement l'esprit :
-                    <br><br>
-                    « telle est la pratique par laquelle les Fils des Vainqueurs extraient l'essence des libertés et richesses. Tel est le sens. »
+                <div id="translation-display" class="text-box" style="display: none; margin-top: 10px;">
+                    <h3 style="color: #5a4a42; margin-top: 0; margin-bottom: 15px;">Première pratique : La difficulté d'obtenir une existence humaine pleine de sens dotée des libertés et des richesses</h3>
+
+                    <p style="line-height: 1.8; color: #333; margin: 0 0 15px 0;">
+                        Les deux sujets principaux sont la façon de s'engager dans les pratiques préliminaires du Dharma et l'enseignement sur le chemin des trois types d'individus. De la première à la septième pratique.
+                    </p>
+
+                    <h4 style="color: #5a4a42; margin-top: 15px; margin-bottom: 10px;">Le sens :</h4>
+                    <p style="line-height: 1.8; color: #333; margin: 0 0 15px 0;">
+                        Pourvu des huit libertés, qui consistent à ne pas être né dans les huit états d'entrave, et des dix richesses au complet — les cinq richesses personnelles, conditions favorables à la pratique du Dharma réunies de notre propre côté, et les cinq richesses extérieures, réunies du côté d'autrui —, ce support corporel, pareil à un grand navire, est difficile à obtenir, comme le montrent les trois considérations de l'exemple, du nombre et de la cause ; et, une fois obtenu, il permet d'accomplir le grand but que l'on poursuit, quel qu'il soit : la libération ou l'omniscience. Maintenant que nous l'avons obtenu, au lieu de le gaspiller en choses vaines ou de peu de portée, et afin de délivrer du grand océan du saṃsāra nous-mêmes et tous les autres, à tout moment, de jour comme de nuit, sans le moindre relâchement et sans interruption, écouter les instructions profondes auprès d'un ami spirituel du Grand Véhicule, examiner leur sens et y réfléchir au moyen des quatre types de raisonnement, puis méditer en y appliquant correctement l'esprit :
+                    </p>
+
+                    <p style="line-height: 1.8; color: #333; margin: 0 0 15px 0;">
+                        « telle est la pratique par laquelle les Fils des Vainqueurs extraient l'essence des libertés et richesses. Tel est le sens. »
+                    </p>
                 </div>
             </div>
         </div>
