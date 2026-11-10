@@ -37,7 +37,7 @@
         .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
         @media (max-width: 1000px) { .content { grid-template-columns: 1fr; } }
         .section { padding: 20px; border-radius: 8px; background: #faf8f3; }
-        .section h2 { color: #5a4a42; margin-bottom: 15px; font-size: 1.2em; font-weight: normal; border-bottom: 2px solid #8b7355; padding-bottom: 10px; }
+        .section h2 { color: #5a4a42; margin-bottom: 15px; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #8b7355; padding-bottom: 10px; }
         .text-box { background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid #8b7355; line-height: 2.2; word-break: break-word; }
         .text-box-full { background: white; padding: 20px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid #8b7355; line-height: 2.2; word-break: break-word; font-size: 0.95em; color: #333; white-space: pre-wrap; }
         .tibetan-word { cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: all 0.2s ease; display: inline-block; font-weight: 500; color: #5a4a42; background: #f0ebe5; margin: 2px 2px; border: 1px solid #d4c4b0; }
@@ -51,9 +51,10 @@
         .vocabulary-table tbody tr.highlighted { background-color: #fff3cd !important; border-left: 4px solid #8b7355; }
         .tibetan-term { color: #5a4a42; font-weight: 600; width: 40%; }
         .stats { background: #f0ebe5; padding: 12px; border-radius: 6px; margin-top: 15px; color: #5a4a42; font-weight: 500; font-size: 0.9em; }
-        .toggle-btn { background: #8b7355; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; }
-        #french-text h3 { font-size: 1.1em; margin: 0 0 15px 0; color: #5a4a42; }
+        .toggle-btn { background: #8b7355; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 0.95em; }
+        #french-text h3 { font-size: 1.2em; margin: 0 0 15px 0; color: #5a4a42; }
         #french-text h4 { font-size: 1em; margin: 15px 0 10px 0; color: #5a4a42; font-weight: 600; }
+        #french-text p { font-size: 1em; line-height: 1.8; color: #333; margin: 0 0 15px 0; }
     </style>
 </head>
 <body>
@@ -96,12 +97,17 @@
                 <h2>Traduction Française</h2>
                 <button class="toggle-btn" onclick="toggleFrench()">📖 Afficher la traduction</button>
                 <div id="french-text" class="text-box" style="display: none; margin-top: 10px;">
-                    <h3>Dix-septième pratique : Intégrer le manque de respect</h3>
+                    <h3>Dix-septième pratique : Prendre sur la voie le mépris</h3>
+                    <p>
+                        Seconde des deux choses difficiles à supporter : le mépris d'un égal ou d'un inférieur
+                    </p>
                     <h4>Le sens :</h4>
                     <p>
-                       Même si certaines personnes inférieures ou égales en position sociale, en beauté, en richesse ou en qualités, par orgueil nous humilient ou profèrent toutes sortes d’insultes, non seulement, nous ne nous mettons pas en colère.</p>
-                    <p>Mais nous nous inclinons devant eux respectueusement avec nos trois portes de la même façon que vers notre lama racine plein de bonté en les plaçant au-dessus de notre tête.</p>
-                    <p>« Cette manière de supporter les mauvais agissements d’autrui le long du chemin est l’une des [37] pratiques des Fils des Vainqueurs ».</p>
+                        Même si quelqu'un — mon égal par la naissance, l'apparence, la fortune et les qualités, ou mon inférieur en ces domaines — me traite, sous l'emprise de l'orgueil, avec toutes sortes de dédains et de mépris, non seulement ne pas me mettre en colère contre lui, mais, bien plus, m'inclinant devant lui avec respect, de corps, de parole et d'esprit, comme devant un lama plein de bonté, le placer moi-même au sommet de ma tête :
+                    </p>
+                    <p>
+                        « telle est la pratique par laquelle les Fils des Vainqueurs prennent sur la voie le mépris que leur témoigne autrui. Tel est le sens. »
+                    </p>
                 </div>
             </div>
         </div>
